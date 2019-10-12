@@ -8,16 +8,12 @@ public class RandomNumber {
 	
 	public static List<Integer> getRandom(){		
 		List<Integer> randomCombi = new ArrayList<>();
-		randomCombi.add(0);
-		randomCombi.add(0);
-		randomCombi.add(0);
-		randomCombi.add(0); 
-		
+		 
 		Random random = new Random();
 
-		for (int i = 0; i < randomCombi.size(); i++){
+		for (int i = 0; i < 4; i++){
 			int j = random.nextInt(10);
-			randomCombi.set(i,j);
+			randomCombi.add(j);
 		};
 		
 		return randomCombi;
