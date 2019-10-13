@@ -1,6 +1,7 @@
 package com.lavanya.defenseur;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,21 +23,26 @@ public class Defenseur {
 		return randomCombi;
 	}
 	
-	
-
 	public static void main(String[] args) {
 
 		System.out.println("Mode Défenseur");
 		System.out.println("Bienvenue dans le mode Défenseur!");
 		System.out.println("Veuillez définir un nombre à 4 chiffres compris entre 0000 à 9999!");
-		System.out.println("C'est fait, garder bien votre combinaison à 4 chiffres en tête\nMaintenat c'est à moi de jouer!");
+		System.out.println("C'est fait? Garder bien en tête votre combinaison à 4 chiffres\nMaintenat c'est à moi de jouer!");
 		System.out.println("Voici ma première proposition: " + getRandom());
 		
 		//Le joueur va comparer la combi proposée à la sienne avec les valeurs + = ou -
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez la comparer à votre combinaison et m'indiquer pour chacun de ses chiffres les comparatifs +,= ou -: ");
+		System.out.println("Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée: ex +,=,=,-(merci d'utiliser le même format)");
 		String clue = sc.nextLine();
-		System.out.println("Vous avez saisi : " + clue);
+		
+		//Conversion de la réponse du joueur en String List ArrayList		
+		List<String> playerClue = Arrays.asList(clue.split(","));
+		
+		
+		System.out.println("Vous avez saisi : " + playerClue);
+		
+		
 		
 		sc.close();
 	}
