@@ -46,12 +46,14 @@ public class Defenseur {
 		List<Integer> x = getRandom(0,10); 
 		System.out.println("Voici ma première proposition: " + x);	
 		
+//		Création de la réponse du joueur que l'ordi voudrait pour gagner sous forme de List
 		List<String> winCombi = new ArrayList<>();
 		winCombi.add("=");
 		winCombi.add("=");
 		winCombi.add("=");
 		winCombi.add("=");
 		
+//		Création de la boucle for pour donner à l'ordi la possibilité d'avoir 3 essais dans le jeu
 		for (int i=0; i<2; i++) {
 			//Le joueur va comparer la combi proposée à la sienne avec les valeurs + = ou -
 			Scanner sc = new Scanner(System.in);
@@ -80,6 +82,10 @@ public class Defenseur {
 				
 				
 				for (int j=0, k=0; j < playerClue.size(); j++, k++) {
+
+					
+//					Tentatives d'utilisation du switch, je ne sais quel argument passer dans switch() donc le code n'est pas bon et le switch est non fonctionnel!
+					
 //					boolean	a = playerClue.get(j).contentEquals("+");
 //					boolean	b = playerClue.get(j).contentEquals("-");
 //					boolean c= 	playerClue.get(j).contentEquals("=");
@@ -99,6 +105,8 @@ public class Defenseur {
 //							break;
 //					}
 					
+//					Je n'ai pas encore trouvé de solution pour adapter le min et max pour chaque if statement! car au tour 2 (i=2) de mon for, la valeur du min
+//					et max changent selon qu'au tour précédent le joueur avait dit + ou -! Il y a 4 possibilités au total!
 					if (playerClue.get(j).contentEquals("+")) {
 						int z = newRandom((x.get(k))+1,10);
 						randomCombiNewTry.add(z);
@@ -121,7 +129,7 @@ public class Defenseur {
 				System.out.println("Voila ma nouvelle proposition " + randomCombiNewTry);
 			
 			}
-//			Si décommenté la boucle ne se fait pas et j'ai le message d'erreur
+//			Si "sc.close" est décommenté la boucle ne se fait pas et j'ai le message d'erreur: Pourquoi?
 //			Exception in thread "main" Voila ma nouvelle proposition [9, 9, 6, 8]
 //					Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée: ex +,=,=,-(merci d'utiliser le même format de réponse que dans l'exemple)
 //					java.util.NoSuchElementException: No line found
@@ -129,11 +137,9 @@ public class Defenseur {
 //						at com.lavanya.defenseur.Defenseur.main(Defenseur.java:53)
 //			sc.close();	
 			
-//			if (i == 3) {
-//				System.out.println("Vous avez gagné!");
-//			}
 		}
 		
+//		Petit souci ici si l'ordi gagne avec le boolean win == true il faudrait que le code ci-dessous ne s'execute pas mais je ne vois pas où le placer du coup!
 		Scanner scLast = new Scanner(System.in);
 		System.out.println("Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée: ex +,=,=,-(merci d'utiliser le même format de réponse que dans l'exemple)");
 		String clueLast = scLast.nextLine();
