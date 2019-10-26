@@ -56,9 +56,7 @@ public class Defenseur {
 		
 		boolean win = playerAnswer.equals(winCombi);
 		return win;
-	}
-	
-	
+	}	
 	
 	
 	public static void main(String[] args) {
@@ -69,8 +67,8 @@ public class Defenseur {
 		System.out.println("C'est fait? Garder bien en tête votre combinaison à 4 chiffres\nMaintenat c'est à moi de jouer!");
 		
 		
-		List<Integer> x = getRandom(0,10); 
-		System.out.println("Voici ma première proposition: " + x);	
+		List<Integer> x1 = getRandom(0,10); 
+		System.out.println("Voici ma première proposition: " + x1);	
 				
 		
 //		Création de la boucle for pour donner à l'ordi la possibilité d'avoir 3 essais dans le jeu
@@ -117,24 +115,39 @@ public class Defenseur {
 					
 //					Je n'ai pas encore trouvé de solution pour adapter le min et max pour chaque if statement! car au tour 2 (i=2) de mon for, la valeur du min
 //					et max changent selon qu'au tour précédent le joueur avait dit + ou -! Il y a 4 possibilités au total!
+					
 					if (y.get(j).contentEquals("+")) {
-						int z = newRandom((x.get(k))+1,10);
+						int z = newRandom((x1.get(k))+1,10);
 						randomCombiNewTry.add(z);
 					
 					}
 					
 					if (y.get(j).contentEquals("-")) {
-						int z = newRandom(0,x.get(k));
+						int z = newRandom(0,x1.get(k));
 						randomCombiNewTry.add(z);
 					}
 					
 					if (y.get(j).contentEquals("=")) {
-						int z = x.get(k);
+						int z = x1.get(k);
 						randomCombiNewTry.add(z);
 					}
 				}
 				
-				System.out.println("Voila ma nouvelle proposition " + randomCombiNewTry);
+				List<Integer> x2 = randomCombiNewTry;
+				
+				System.out.println("Voila ma nouvelle proposition " + x2);
+				
+				if (i == 1) {
+					List<String> yLast = playerAnswer();
+					winAnswer(yLast);
+				
+					if (winAnswer(yLast) == false) {
+						System.out.println("Vous avez gagné!!!");
+					}
+					else {
+						System.out.println("J'ai gagné!!!");
+					}
+				}
 				
 			}
 			
@@ -149,16 +162,6 @@ public class Defenseur {
 			
 		}
 		
-//		Petit souci ici si l'ordi gagne avec le boolean win == true il faudrait que le code ci-dessous ne s'execute pas mais je ne vois pas où le placer du coup!
-		List<String> yLast = playerAnswer();
-		winAnswer(yLast);
-	
-		if (winAnswer(yLast) == false) {
-			System.out.println("Vous avez gagné!!!");
-		}
-		else {
-			System.out.println("J'ai gagné!!!");
-		}
 	}
 
 }
