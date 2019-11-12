@@ -1,30 +1,33 @@
 package com.lavanya.defenseur;
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Defenseur {
 	
-//	Méthode pour uploader des données du fichier defenseurConfig.properties	
 	public static int properties(String key) throws IOException {
-		
-		Properties conf = new Properties();
-		InputStream first = new FileInputStream("src/defenseurConfig.properties");
-		conf.load(first);
-		
-		int combiDigit = Integer.parseInt(conf.getProperty(key));
-		
-		return combiDigit;
-		
+		int confValue = Configuration.getInstance().getProperty(key);
+		return confValue;
 	}
 	
+//	Méthode pour uploader des données du fichier defenseurConfig.properties	
+//	public static int properties(String key) throws IOException {
+//		
+//		Properties conf = new Properties();
+//		InputStream first = new FileInputStream("src/defenseurConfig.properties");
+//		conf.load(first);
+//		
+//		int combiDigit = Integer.parseInt(conf.getProperty(key));
+//		
+//		return combiDigit;
+//		
+//	}
+//	
 	
 	public static void menuStart() {
 		System.out.println("Mode Défenseur");
