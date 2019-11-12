@@ -15,19 +15,6 @@ public class Defenseur {
 		return confValue;
 	}
 	
-//	Méthode pour uploader des données du fichier defenseurConfig.properties	
-//	public static int properties(String key) throws IOException {
-//		
-//		Properties conf = new Properties();
-//		InputStream first = new FileInputStream("src/defenseurConfig.properties");
-//		conf.load(first);
-//		
-//		int combiDigit = Integer.parseInt(conf.getProperty(key));
-//		
-//		return combiDigit;
-//		
-//	}
-//	
 	
 	public static void menuStart() {
 		System.out.println("Mode Défenseur");
