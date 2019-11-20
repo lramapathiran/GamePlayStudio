@@ -7,13 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import com.lavanya.utile.Utile;
+import com.lavanya.common.DefenseurChallengerDuel;
 
 public class Defenseur {
 	
-	public static int properties(String key) throws IOException {
-		int confValue = Configuration.getInstance().getProperty(key);
-		return confValue;
-	}
+	static DefenseurChallengerDuel dCD = new Utile();
 	
 	
 	public static void menuStart() {
@@ -24,22 +23,7 @@ public class Defenseur {
 				"C'est fait? Garder bien en tête votre combinaison à 4 chiffres\nMaintenant c'est à moi de jouer!");
 	}
 
-//Méthode getRandom: l'ordinateur doit proposer au joueur une combinaison à 4 chiffres
-	public static List<Integer> getRandom(int min, int max) throws IOException {
 
-		
-		List<Integer> randomCombi = new ArrayList<>();
-		Random random = new Random();
-
-		for (int i = 0; i < properties("digit"); i++) {
-			int j = min + random.nextInt(max - min);
-			randomCombi.add(j);
-			}
-		
-		
-
-		return randomCombi;
-	}
 
 //Méthode pour créer une nouvelle combinaison à 4 chiffres par l'ordinateur
 	public static Integer newRandom(int min, int max) {
@@ -62,27 +46,12 @@ public class Defenseur {
 		return playerClue;
 
 	}
-
-//	Méthode de type booléen pour définir si l'ordinateur a donné une combinaison 4 chiffres gagnante 
-	public static boolean winAnswer(List<String> playerAnswer) throws IOException {
-
-		// Création d'une liste qui correspond à la réponse du joueur que l'ordi attend
-		// pour gagner
-		List<String> winCombi = new ArrayList<>();
-		
-		for (int i = 0; i < properties("digit"); i++) {
-			winCombi.add("=");
-		}
-
-		boolean win = playerAnswer.equals(winCombi);
-		return win;
-	}
 	
 	public static List<Proposition> rangeArray() throws IOException {
 		
 		List<Proposition> limit = new ArrayList<Proposition>();
 				
-		for (int i = 0; i < properties("digit"); i++) {
+		for (int i = 0; i < dCD.properties("digit"); i++) {
 			limit.add(new Proposition(0,10));
 		}
 		
@@ -132,12 +101,12 @@ public class Defenseur {
 // Création de la boucle for pour donner à l'ordi la possibilité d'avoir 3
 // essais dans le jeu
 	public static void threeAttempt(List<Integer> x, List<Proposition> range) throws IOException {
-		for (int i=0; i<properties("digitAttempt"); i++) {
+		for (int i=0; i<dCD.properties("digitAttempt"); i++) {
 			
 			List<String> y = playerAnswer();
 		
 			
-			if (winAnswer(y) == true){
+			if (dCD.winAnswer(y) == true){
 				System.out.println("J'ai gagné!!!");
 				break;
 				
@@ -153,7 +122,7 @@ public class Defenseur {
 					List<String> yLast = playerAnswer();
 				
 				
-					if (winAnswer(yLast) == false) {
+					if (dCD.winAnswer(yLast) == false) {
 						System.out.println("Vous avez gagné!!!");
 					}
 					else {
@@ -170,7 +139,7 @@ public class Defenseur {
 
 		menuStart();
 		
-		List<Integer> x = getRandom(properties("min"), properties("max"));
+		List<Integer> x = dCD.getRandom(dCD.properties("min"), dCD.properties("max"));
 		
 		System.out.println("Voici ma première proposition: " + x);
 		
