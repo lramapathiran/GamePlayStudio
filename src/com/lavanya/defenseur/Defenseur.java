@@ -4,6 +4,7 @@ package com.lavanya.defenseur;
 import java.io.IOException;
 import java.util.List;
 
+import com.lavanya.utile.Proposition;
 import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileDefenseurDuel;
 import com.lavanya.common.DefenseurChallengerDuel;

@@ -8,7 +8,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.lavanya.common.DefenseurDuel;
-import com.lavanya.defenseur.Proposition;
 import com.lavanya.utile.Utile;
 import com.lavanya.common.DefenseurChallengerDuel;
 

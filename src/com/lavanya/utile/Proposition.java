@@ -1,4 +1,4 @@
-package com.lavanya.duel;
+package com.lavanya.utile;
 
 public class Proposition {
 	
@@ -30,4 +30,8 @@ public class Proposition {
 		this.max = max;
 	}
 	
+	
+	
+
 }
+

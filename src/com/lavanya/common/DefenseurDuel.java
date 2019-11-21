@@ -3,7 +3,7 @@ package com.lavanya.common;
 import java.io.IOException;
 import java.util.List;
 
-import com.lavanya.defenseur.Proposition;
+import com.lavanya.utile.Proposition;
 
 public interface DefenseurDuel {
 	

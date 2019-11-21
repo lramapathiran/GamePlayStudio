@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.lavanya.utile.Proposition;
+
 
 public class Duel {
 	
