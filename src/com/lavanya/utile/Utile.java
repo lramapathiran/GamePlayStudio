@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.lavanya.common.DefenseurChallengerDuel;
-import com.lavanya.defenseur.Configuration;
 
 public class Utile  implements DefenseurChallengerDuel {
 
