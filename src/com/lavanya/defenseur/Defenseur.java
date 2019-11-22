@@ -27,7 +27,11 @@ public class Defenseur {
 	
 // Création de la boucle for pour donner à l'ordi la possibilité d'avoir 3
 // essais dans le jeu
-	public static void threeAttempt(List<Integer> x, List<Proposition> range) throws IOException {
+	public static void threeAttempt(List<Integer> x) throws IOException {
+		
+		System.out.println("Voici ma première proposition: " + x);
+		List<Proposition> range = dD.rangeArray();
+		
 		for (int i=0; i<dCD.properties("digitAttempt"); i++) {
 			
 			List<String> y = dD.playerAnswer();
@@ -65,14 +69,8 @@ public class Defenseur {
 	public static void main(String[] args) throws IOException {
 
 		menuStart();
-		
 		List<Integer> x = dCD.getRandom(dCD.properties("min"), dCD.properties("max"));
-		
-		System.out.println("Voici ma première proposition: " + x);
-		
-		List<Proposition> range = dD.rangeArray();
-		
-		threeAttempt(x, range);
+		threeAttempt(x);
 
 	}
 
