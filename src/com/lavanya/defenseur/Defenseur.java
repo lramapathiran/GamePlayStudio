@@ -9,14 +9,15 @@ import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileDefenseurDuel;
 import com.lavanya.common.DefenseurChallengerDuel;
 import com.lavanya.common.DefenseurDuel;
+import com.lavanya.factoryDesign.Game;
 
-public class Defenseur {
+public class Defenseur extends Game{
 	
 	static DefenseurChallengerDuel dCD = new Utile();
 	static DefenseurDuel dD = new UtileDefenseurDuel();
 	
-	
-	public static void menuStart() {
+	@Override
+	public void menuStart() {
 		System.out.println("Mode Défenseur");
 		System.out.println("Bienvenue dans le mode Défenseur!");
 		System.out.println("Veuillez définir un nombre à 4 chiffres compris entre 0000 à 9999!");
@@ -27,10 +28,13 @@ public class Defenseur {
 	
 // Création de la boucle for pour donner à l'ordi la possibilité d'avoir 3
 // essais dans le jeu
-	public static void threeAttempt(List<Integer> x) throws IOException {
+	@Override
+	public void gamePlay() throws IOException {
 		
+		List<Integer> x = dCD.getRandom(dCD.properties("min"), dCD.properties("max"));
 		System.out.println("Voici ma première proposition: " + x);
 		List<Proposition> range = dD.rangeArray();
+		
 		
 		for (int i=0; i<dCD.properties("digitAttempt"); i++) {
 			
@@ -63,15 +67,6 @@ public class Defenseur {
 				
 			}
 		}
-	}
-
-	
-	public static void main(String[] args) throws IOException {
-
-		menuStart();
-		List<Integer> x = dCD.getRandom(dCD.properties("min"), dCD.properties("max"));
-		threeAttempt(x);
-
 	}
 
 }
