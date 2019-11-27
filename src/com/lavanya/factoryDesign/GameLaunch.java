@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import com.lavanya.factoryDesign.Game;
 import com.lavanya.factoryDesign.GameFactory;
+import com.lavanya.menupage.MenuPage;
 
 
 
@@ -13,14 +14,8 @@ public class GameLaunch {
 	
 		Scanner sc= new Scanner(System.in);
 		 
-		System.out.println("Bienvenue à GAMEPLAY STUDIO");
-		System.out.println("Menu");
-		System.out.println("1: Défenseur");
-		System.out.println("2: Challenger");
-		System.out.println("3: Duel");
-		System.out.println("4: Quitter l'application");
+		MenuPage.getInstance().menuStart();
 		
-		System.out.println("A quel mode souhaitez-vous jouer? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
 		String input = sc.nextLine();
 		Integer answer = Integer.parseInt(input);
 		
@@ -28,12 +23,10 @@ public class GameLaunch {
 		switch (answer) {
 			case 1:
 				Game defenseur = GameFactory.getGame("Defenseur");
-				defenseur.menuStart();
 				defenseur.gamePlay();
 				break;
 			case 2:
 				Game challenger = GameFactory.getGame("Challenger");
-				challenger.menuStart();
 				challenger.gamePlay();				
 				break;
 		}

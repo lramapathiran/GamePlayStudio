@@ -7,6 +7,7 @@ import com.lavanya.common.ChallengerDuel;
 import com.lavanya.common.DefenseurChallengerDuel;
 import com.lavanya.common.DefenseurDuel;
 import com.lavanya.factoryDesign.Game;
+import com.lavanya.menupage.MenuPage;
 import com.lavanya.utile.Proposition;
 import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileChallengerDuel;
@@ -19,20 +20,11 @@ public class Duel extends Game{
 	static DefenseurDuel dD = new UtileDefenseurDuel();
 	static ChallengerDuel cD = new UtileChallengerDuel();
 	
-	@Override
-	public void menuStart() {
-		System.out.println("Mode Duel");
-		System.out.println("Bienvenue dans le mode Duel!");
-		System.out.println("Je vais définir un nombre secret à 4 chiffres! ex: 8,6,5,1");
-		System.out.println("Veuillez définir également votre nombre secret à 4 chiffres compris entre 0,0,0,0 à 9,9,9,9!");
-		System.out.println(
-				"C'est fait? Garder bien en tête votre combinaison à 4 chiffres");
-		System.out.println("Nous sommes en mode duel, le premier à découvrir la combinaison secrète de l'autre gagne!");
-		System.out.println("Vous êtes prêt? Allez je commence!");
-	}
 	
 	@Override
 	public void gamePlay() throws IOException {
+		
+		MenuPage.getInstance().menuStartDuel();
 		
 		List<Integer> x1= dCD.getRandom(dCD.properties("min"),dCD.properties("max"));
 		List<Integer> x2= dCD.getRandom(dCD.properties("min"),dCD.properties("max"));

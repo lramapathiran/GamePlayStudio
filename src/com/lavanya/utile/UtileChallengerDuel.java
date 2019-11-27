@@ -20,7 +20,9 @@ public class UtileChallengerDuel implements ChallengerDuel {
 				"Veuillez saisir votre proposition, ex: 0,9,1,7 (Utilisez le même format que dans l'exemple):");
 		String input = sc.nextLine();
 		List<String> answerString = Arrays.asList(input.split(","));
-
+		
+//		sc.close();
+		
 		for (String str : answerString) {
 			answerInt.add(Integer.parseInt(str));
 		}

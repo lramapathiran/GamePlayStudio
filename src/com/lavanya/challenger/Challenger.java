@@ -6,6 +6,7 @@ import java.util.List;
 import com.lavanya.common.ChallengerDuel;
 import com.lavanya.common.DefenseurChallengerDuel;
 import com.lavanya.factoryDesign.Game;
+import com.lavanya.menupage.MenuPage;
 import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileChallengerDuel;
 
@@ -15,14 +16,14 @@ public class Challenger extends Game{
 	static DefenseurChallengerDuel dCD = new Utile();
 	static ChallengerDuel cD = new UtileChallengerDuel();
 	
-	@Override
-	public void menuStart() {
-		System.out.println("Mode Challenger:");
-		System.out.println("Bienvenue dans le mode Challenger!");
-		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0,0,0,0 et 9,9,9,9!");
-		System.out.println("Vous avez le droit à 3 tentatives!");
-		System.out.println("Vous êtes prêt? Allez! A vous de jouer!");
-	}
+//	@Override
+//	public void menuStart() {
+//		System.out.println("Mode Challenger:");
+//		System.out.println("Bienvenue dans le mode Challenger!");
+//		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0,0,0,0 et 9,9,9,9!");
+//		System.out.println("Vous avez le droit à 3 tentatives!");
+//		System.out.println("Vous êtes prêt? Allez! A vous de jouer!");
+//	}
 	
 
 
@@ -30,7 +31,9 @@ public class Challenger extends Game{
 //			en dehors de la boucle).
 	@Override
 	public void gamePlay() throws IOException {
-	
+		
+		MenuPage.getInstance().menuStartChallenger();
+		
 		List<Integer> x = dCD.getRandom(dCD.properties("min"),dCD.properties("max"));
 		List<Integer> y = cD.playerCombi();
 			
