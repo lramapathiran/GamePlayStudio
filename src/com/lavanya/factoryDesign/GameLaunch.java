@@ -13,6 +13,8 @@ public class GameLaunch {
 	public static void main(String[] args) throws IOException {
 	
 		Scanner sc= new Scanner(System.in);
+		Game defenseur = GameFactory.getGame(GameType.defenseur);
+		Game challenger = GameFactory.getGame(GameType.challenger);
 		 
 		MenuPage.getInstance().menuStart();
 		
@@ -22,12 +24,12 @@ public class GameLaunch {
 		
 		switch (answer) {
 			case 1:
-				Game defenseur = GameFactory.getGame("Defenseur");
 				defenseur.gamePlay();
+				defenseur.replay();
 				break;
-			case 2:
-				Game challenger = GameFactory.getGame("Challenger");
-				challenger.gamePlay();				
+			case 2:				
+				challenger.gamePlay();
+				challenger.replay();
 				break;
 		}
 		

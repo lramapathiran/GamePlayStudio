@@ -2,11 +2,13 @@ package com.lavanya.duel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import com.lavanya.common.ChallengerDuel;
 import com.lavanya.common.DefenseurChallengerDuel;
 import com.lavanya.common.DefenseurDuel;
 import com.lavanya.factoryDesign.Game;
+import com.lavanya.factoryDesign.GameLaunch;
 import com.lavanya.menupage.MenuPage;
 import com.lavanya.utile.Proposition;
 import com.lavanya.utile.Utile;
@@ -30,8 +32,8 @@ public class Duel extends Game{
 		List<Integer> x2= dCD.getRandom(dCD.properties("min"),dCD.properties("max"));
 		System.out.println("Voici ma première proposition: " + x1);
 		List<Proposition> range = dD.rangeArray();
-		List<String> z1;
-		List<String> z2 = null;
+		List<Character> z1;
+		List<Character> z2 = null;
 		int i = 0;
 			
 		do {
@@ -69,5 +71,23 @@ public class Duel extends Game{
 			}while(dCD.winAnswer(z1) == false || dCD.winAnswer(z2) == false);
 //			
 		}
+	
+	@Override
+	public void replay() throws IOException {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Souhaitez-vous rejouer? O/N");
+		String willReplay = sc.nextLine();
+			
+		switch(willReplay) {
+			case "O":
+				gamePlay();
+				break;
+			case "N":
+				GameLaunch.main(null);
+				break;
+		
+		}
+	}
 
 }

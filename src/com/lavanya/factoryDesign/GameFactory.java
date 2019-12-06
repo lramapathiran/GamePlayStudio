@@ -6,15 +6,15 @@ import com.lavanya.duel.Duel;
 
 public class GameFactory {
 	
-	public static Game getGame(String type){
+	public static Game getGame(GameType name){
 		
-		if("Defenseur".equalsIgnoreCase(type)){
+		if(GameType.defenseur == name){
             return new Defenseur();
         }
-        else if("Challenger".equalsIgnoreCase(type)){
+        else if(GameType.challenger == name){
             return new Challenger();
         }
-        else if("Duel".equalsIgnoreCase(type)){
+        else if(GameType.duel == name){
             return new Duel();
         }
 

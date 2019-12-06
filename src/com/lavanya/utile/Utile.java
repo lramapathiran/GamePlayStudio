@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import com.lavanya.common.DefenseurChallengerDuel;
+import com.lavanya.factoryDesign.GameLaunch;
 
 public class Utile  implements DefenseurChallengerDuel {
 
@@ -32,18 +34,20 @@ public class Utile  implements DefenseurChallengerDuel {
 		}
 		
 //		Méthode de type booléen pour définir si l'ordinateur a donné une combinaison 4 chiffres gagnante 
-		public boolean winAnswer(List<String> playerAnswer) throws IOException {
+		public boolean winAnswer(List<Character> playerAnswer) throws IOException {
 
 			// Création d'une liste qui correspond à la réponse du joueur que l'ordi attend
 			// pour gagner
-			List<String> winCombi = new ArrayList<>();
+			List<Character> winCombi = new ArrayList<>();
 			
 			for (int i = 0; i < properties("digit"); i++) {
-				winCombi.add("=");
+				winCombi.add('=');
 			}
 
 			boolean win = playerAnswer.equals(winCombi);
 			return win;
 		}
+		
+		
 
 }

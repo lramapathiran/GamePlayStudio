@@ -1,6 +1,12 @@
 package com.lavanya.menupage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.lavanya.common.DefenseurDuel;
+import com.lavanya.utile.UtileDefenseurDuel;
 
 public class MenuPage {
 	
@@ -24,19 +30,31 @@ public class MenuPage {
 		System.out.println("A quel mode souhaitez-vous jouer? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
 	}
 	
-	public void menuStartDefenseur() {
+	public List<Integer> menuStartDefenseur() {
+		
+		DefenseurDuel dD = new UtileDefenseurDuel();
+		
 		System.out.println("Mode Défenseur");
 		System.out.println("Bienvenue dans le mode Défenseur!");
-		System.out.println("Veuillez définir un nombre à 4 chiffres compris entre 0000 à 9999!");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Veuillez saisir un nombre à 4 chiffres compris entre 0000 à 9999!");
+		String secretCombi = sc.nextLine();
+		
+		List<Integer> x = dD.playerCombi(secretCombi);
+        
+        System.out.println("Votre combinaison secrète à découvrir est " + x);
 		System.out.println(
-				"C'est fait? Garder bien en tête votre combinaison à 4 chiffres\nMaintenant c'est à moi de jouer!");
+				"Maintenant c'est à moi de la deviner!");
+		
+		return x;
 	}
 	
 	public void menuStartChallenger() {
+		
 		System.out.println("Mode Challenger:");
 		System.out.println("Bienvenue dans le mode Challenger!");
-		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0,0,0,0 et 9,9,9,9!");
-		System.out.println("Vous avez le droit à 3 tentatives!");
+		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0000 et 9999!");
+		System.out.println("Vous avez le droit à 5 tentatives!");
 		System.out.println("Vous êtes prêt? Allez! A vous de jouer!");
 	}
 	
@@ -44,12 +62,11 @@ public class MenuPage {
 	public void menuStartDuel() {
 		System.out.println("Mode Duel");
 		System.out.println("Bienvenue dans le mode Duel!");
-		System.out.println("Je vais définir un nombre secret à 4 chiffres! ex: 8,6,5,1");
-		System.out.println("Veuillez définir également votre nombre secret à 4 chiffres compris entre 0,0,0,0 à 9,9,9,9!");
-		System.out.println(
-				"C'est fait? Garder bien en tête votre combinaison à 4 chiffres");
+		System.out.println("Je vais définir un nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
+		System.out.println("Veuillez saisir ci-dessous votre nombre secret à 4 chiffres également compris entre 0000 à 9999 !");
 		System.out.println("Nous sommes en mode duel, le premier à découvrir la combinaison secrète de l'autre gagne!");
 		System.out.println("Vous êtes prêt? Allez je commence!");
 	}
 
+	
 }
