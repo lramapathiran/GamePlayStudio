@@ -6,32 +6,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.lavanya.common.DefenseurDuel;
+import com.lavanya.interfaces.DefChallDuelInterface;
+import com.lavanya.interfaces.DefDuelInterface;
 import com.lavanya.utile.Utile;
-import com.lavanya.common.DefenseurChallengerDuel;
 
-public class UtileDefenseurDuel implements DefenseurDuel{
+public class UtileDefenseurDuel implements DefDuelInterface{
 	
 
-		static DefenseurChallengerDuel dCD = new Utile();
+		static DefChallDuelInterface iDefChallDuel = new Utile();
 		
-// 		Méthode pour convertir la combinaison secrète du joueur d'un type String-->Chatacter-->Integer
-//		@param la combinaison secrète de type String entrée dans la console
-//		return: Liste d'Interger qui correspond à la combi secrète du joueur à découvrir par l'ordi
-		public List<Integer> playerCombi(String secretCombi) {
-			
-			List<Integer> playerCombi = new ArrayList<Integer>();
-			
-			for (char ch : secretCombi.toCharArray()) { 
-	        	
-	        	int i = Character.getNumericValue(ch);
-	        	playerCombi.add(i); 
-	        }
-			 return playerCombi;
-		}
-	
-	
-	
+		
 //		Méthode pour créer une nouvelle combinaison à 4 chiffres par l'ordinateur
 		public Integer newRandom(int min, int max) {
 
@@ -40,31 +24,7 @@ public class UtileDefenseurDuel implements DefenseurDuel{
 			return j;
 		}
 		
-//		Méthode de comparaison de la réponse de l'ordi à la combi secrète du joueur par création d'une Liste +,=,-
-//		@param: x (list Integer) correspond à la combi secrète à découvrir du joueur et y (list Integer) correspond à la proposition de combi 4 chiffres de l'ordi
-//		return la liste Character de comparaison =,+,-
-		public List<Character> computerPropositionCheck(List<Integer> x, List<Integer> y) throws IOException {
-			
-			List<Character> computerCheck = new ArrayList<>();
-			for (int i = 0, j = 0; i < dCD.properties("digit"); i++, j++) {
 
-				if (x.get(i) > y.get(j)) {
-					computerCheck.add('+');
-				}
-
-				if (x.get(i) < y.get(j)) {
-					computerCheck.add('-');
-				}
-
-				if (x.get(i) == y.get(j)) {
-					computerCheck.add('=');
-				}
-
-			}
-
-			return computerCheck;
-			
-		}
 		
 //		Méthode où Le joueur va comparer la combi proposée à la sienne avec les valeurs + = ou -
 //		Conversion de la réponse du joueur en String List ArrayList
@@ -113,7 +73,7 @@ public class UtileDefenseurDuel implements DefenseurDuel{
 			
 			List<Proposition> limit = new ArrayList<Proposition>();
 					
-			for (int i = 0; i < dCD.properties("digit"); i++) {
+			for (int i = 0; i < iDefChallDuel.intProperties("digit"); i++) {
 				limit.add(new Proposition(0,10));
 			}
 			
@@ -127,10 +87,10 @@ public class UtileDefenseurDuel implements DefenseurDuel{
 					
 			List<Integer> randomCombiNewTry = new ArrayList<>();
 			
-			for (int j = 0, k = 0, z = 0; j < y.size(); j++, k++) {
-				
+			for (int j = 0; j < y.size(); j++) {
+				 int z=0;
 				if (y.get(j).equals('+')) {
-					range.get(j).setMin(x.get(k) + 1);
+					range.get(j).setMin(x.get(j) + 1);
 					int min = range.get(j).getMin();
 					int max = range.get(j).getMax();
 					
@@ -138,7 +98,7 @@ public class UtileDefenseurDuel implements DefenseurDuel{
 				}
 
 				if (y.get(j).equals('-')) {
-					range.get(j).setMax(x.get(k));
+					range.get(j).setMax(x.get(j));
 					int min = range.get(j).getMin();
 					int max = range.get(j).getMax();
 					
@@ -148,7 +108,7 @@ public class UtileDefenseurDuel implements DefenseurDuel{
 				
 
 				if (y.get(j).equals('=')) {
-					z = x.get(k);
+					z = x.get(j);
 				}
 				
 				randomCombiNewTry.add(z);

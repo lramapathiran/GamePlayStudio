@@ -25,11 +25,9 @@ public class GameLaunch {
 		switch (answer) {
 			case 1:
 				defenseur.gamePlay();
-				defenseur.replay();
 				break;
 			case 2:				
 				challenger.gamePlay();
-				challenger.replay();
 				break;
 		}
 		

@@ -2,12 +2,11 @@ package com.lavanya.challenger;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
-import com.lavanya.common.ChallengerDuel;
-import com.lavanya.common.DefenseurChallengerDuel;
 import com.lavanya.factoryDesign.Game;
-import com.lavanya.factoryDesign.GameLaunch;
+import com.lavanya.factoryDesign.GameType;
+import com.lavanya.interfaces.ChallDuelInterface;
+import com.lavanya.interfaces.DefChallDuelInterface;
 import com.lavanya.menupage.MenuPage;
 import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileChallengerDuel;
@@ -15,8 +14,8 @@ import com.lavanya.utile.UtileChallengerDuel;
 
 public class Challenger extends Game{
 	
-	static DefenseurChallengerDuel dCD = new Utile();
-	static ChallengerDuel cD = new UtileChallengerDuel();
+	static DefChallDuelInterface iDefChallDuel = new Utile();
+	static ChallDuelInterface iChallDuel = new UtileChallengerDuel();
 	
 
 	@Override
@@ -24,16 +23,21 @@ public class Challenger extends Game{
 		
 		MenuPage.getInstance().menuStartChallenger();
 		
-		List<Integer> x = dCD.getRandom(dCD.properties("min"),dCD.properties("max"));
-		List<Integer> y = cD.playerCombi();
+		List<Integer> x = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+		
+		if(iChallDuel.booleanProperties("isDevActive")) {	
+			System.out.println("La combinaison secrète de l'ordinateur est: " + x);
+		}
+		List<Integer> y = iDefChallDuel.playerCombi();
 			
 		
-		for (int i=0, j=4; i<dCD.properties("digitAttempt"); i++, j--) {
+		for (int i=0, j=iDefChallDuel.intProperties("digitAttempt"); i<iDefChallDuel.intProperties("digitAttempt"); i++, j--) {
+			
 			
 			System.out.println("Vous avez saisi: " + y);
-			List<Character> computerAnswer = cD.computerAnswer(x,y);
+			List<Character> computerAnswer = iDefChallDuel.computerPropositionCheck(x,y);
 			
-			if (dCD.winAnswer(computerAnswer) == true){
+			if (iDefChallDuel.winAnswer(computerAnswer) == true){
 				
 				System.out.println("Vous avez gagné");
 				break;
@@ -43,14 +47,17 @@ public class Challenger extends Game{
 				System.out.println("Votre réponse est incorrect!");
 				System.out.println("Voici quelques indications pour vous aider à trouver la réponse exacte: " + computerAnswer);
 				System.out.println("Il vous reste " + j + " tentative(s)");
-				y = cD.playerCombi();
+				if(iChallDuel.booleanProperties("isDevActive")) {	
+					System.out.println("La combinaison secrète de l'ordinateur est: " + x);
+				}
+				y = iDefChallDuel.playerCombi();
 			}
 		
 			if (i == 3) {
 				
-				List<Character> computerAnswerLast = cD.computerAnswer(x,y);
+				List<Character> computerAnswerLast = iDefChallDuel.computerPropositionCheck(x,y);
 				
-				if (dCD.winAnswer(computerAnswerLast) == true) {
+				if (iDefChallDuel.winAnswer(computerAnswerLast) == true) {
 					System.out.println("Félicitations!! Vous avez gagné!!");
 					break;
 				}
@@ -62,26 +69,13 @@ public class Challenger extends Game{
 				}
 								
 			}
+			
+			
 		}
+		
+		iDefChallDuel.replay(GameType.challenger);
 			
 	}
 	
-	@Override
-	public void replay() throws IOException {
-			
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Souhaitez-vous rejouer? O/N");
-		String willReplay = sc.nextLine();
-			
-		switch(willReplay) {
-			case "O":
-				gamePlay();
-				break;
-			case "N":
-				GameLaunch.main(null);
-				break;
-		
-		}
-	}
 
 }

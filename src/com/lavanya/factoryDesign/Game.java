@@ -1,16 +1,14 @@
 package com.lavanya.factoryDesign;
 
-import java.io.IOException;
- 
-enum GameType {
-	defenseur,challenger,duel
-}
+import java.io.IOException; 
+
 
 public abstract class Game {
 	
 	
-	public abstract void gamePlay() throws IOException;
-	public abstract void replay() throws IOException;
-	
+	public void gamePlay() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}	
 	
 }

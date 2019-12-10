@@ -3,21 +3,20 @@ package com.lavanya.defenseur;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import com.lavanya.utile.Proposition;
 import com.lavanya.utile.Utile;
 import com.lavanya.utile.UtileDefenseurDuel;
-import com.lavanya.common.DefenseurChallengerDuel;
-import com.lavanya.common.DefenseurDuel;
 import com.lavanya.factoryDesign.Game;
-import com.lavanya.factoryDesign.GameLaunch;
+import com.lavanya.factoryDesign.GameType;
+import com.lavanya.interfaces.DefChallDuelInterface;
+import com.lavanya.interfaces.DefDuelInterface;
 import com.lavanya.menupage.MenuPage;
 
 public class Defenseur extends Game{
 	
-	static DefenseurChallengerDuel dCD = new Utile();
-	static DefenseurDuel dD = new UtileDefenseurDuel();
+	static DefChallDuelInterface iDefChallDuel = new Utile();
+	static DefDuelInterface iDefDuel = new UtileDefenseurDuel();
 	
 	
 	@Override
@@ -25,22 +24,22 @@ public class Defenseur extends Game{
 		
 		
 		List<Integer> combiToFind = MenuPage.getInstance().menuStartDefenseur();
-		List<Integer> x = dCD.getRandom(dCD.properties("min"), dCD.properties("max"));
+		List<Integer> x = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"), iDefChallDuel.intProperties("max"));
 		
 		
 		System.out.println("Voici ma première proposition: " + x);
-		List<Proposition> range = dD.rangeArray();
+		List<Proposition> range = iDefDuel.rangeArray();
 		
 		
-		for (int i=0, j=4; i<dCD.properties("digitAttempt"); i++, j--) {
+		for (int i=0, j=iDefChallDuel.intProperties("digitAttempt"); i<iDefChallDuel.intProperties("digitAttempt"); i++, j--) {
 			
-			List<Character> playerAnswerExpected = dD.computerPropositionCheck(combiToFind, x);
-			List<Character> y = dD.playerAnswer();
-			dD.validationPlayerClue(y,playerAnswerExpected);
+			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, x);
+			List<Character> y = iDefDuel.playerAnswer();
+			iDefDuel.validationPlayerClue(y,playerAnswerExpected);
 			
 		
 			
-			if (dCD.winAnswer(y) == true){
+			if (iDefChallDuel.winAnswer(y) == true){
 				System.out.println("J'ai gagné!!!");
 				break;
 				
@@ -49,15 +48,15 @@ public class Defenseur extends Game{
 						
 			else {					
 				System.out.println("Je n'ai pas eu la bonne réponse, il me reste " + j + " tentative(s)");
-				x = dD.runConditions(y, x, range);
+				x = iDefDuel.runConditions(y, x, range);
 				System.out.println("La combinaison secrète à découvrir est pour rappel: " + combiToFind);
 				System.out.println("Voila ma nouvelle proposition " + x);
 				
 				if (i == 3) {
-					List<Character> yLast = dD.playerAnswer();
+					List<Character> yLast = iDefDuel.playerAnswer();
 				
 				
-					if (dCD.winAnswer(yLast) == false) {
+					if (iDefChallDuel.winAnswer(yLast) == false) {
 						System.out.println("Vous avez gagné!!!");
 					}
 					else {
@@ -67,23 +66,8 @@ public class Defenseur extends Game{
 				
 			}
 		}
+		iDefChallDuel.replay(GameType.defenseur);
 	}
 
-	@Override
-	public void replay() throws IOException {
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Souhaitez-vous rejouer? O/N(pour retouner au Menu Principal, choisissez N");
-		String willReplay = sc.nextLine();
-		
-		switch(willReplay) {
-			case "O":
-				gamePlay();
-				break;
-			case "N":
-				GameLaunch.main(null);
-				break;
 	
-		}
-	}
 }

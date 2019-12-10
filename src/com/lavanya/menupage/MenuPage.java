@@ -1,12 +1,10 @@
 package com.lavanya.menupage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import com.lavanya.common.DefenseurDuel;
-import com.lavanya.utile.UtileDefenseurDuel;
+import com.lavanya.interfaces.DefChallDuelInterface;
+import com.lavanya.utile.Utile;
 
 public class MenuPage {
 	
@@ -32,15 +30,12 @@ public class MenuPage {
 	
 	public List<Integer> menuStartDefenseur() {
 		
-		DefenseurDuel dD = new UtileDefenseurDuel();
+		DefChallDuelInterface iDefChallDuel = new Utile();
 		
 		System.out.println("Mode Défenseur");
-		System.out.println("Bienvenue dans le mode Défenseur!");
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez saisir un nombre à 4 chiffres compris entre 0000 à 9999!");
-		String secretCombi = sc.nextLine();
+		System.out.println("Bienvenue dans le mode Défenseur!");		
 		
-		List<Integer> x = dD.playerCombi(secretCombi);
+		List<Integer> x = iDefChallDuel.playerCombi();
         
         System.out.println("Votre combinaison secrète à découvrir est " + x);
 		System.out.println(
@@ -66,6 +61,15 @@ public class MenuPage {
 		System.out.println("Veuillez saisir ci-dessous votre nombre secret à 4 chiffres également compris entre 0000 à 9999 !");
 		System.out.println("Nous sommes en mode duel, le premier à découvrir la combinaison secrète de l'autre gagne!");
 		System.out.println("Vous êtes prêt? Allez je commence!");
+	}
+	
+public void menuStartDev() {
+		
+		System.out.println("Mode Dev:");
+		System.out.println("Bienvenue dans le mode Dev!");
+		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0000 et 9999!");
+		System.out.println("Vous avez le droit à 5 tentatives!");
+		System.out.println("Vous êtes prêt? Allez! A vous de jouer!");
 	}
 
 	

@@ -24,11 +24,18 @@ public class Configuration {
     }
 
     // get property value by name
-    public int getProperty(String key) {
+    public int getIntProperty(String key) {
         int combiDigit = 0;
         if (props.containsKey(key))
         	combiDigit = Integer.parseInt(props.getProperty(key));
 
         return combiDigit;
+    }
+    
+    public boolean getBooleanProperty(String key) {
+    	boolean booleanProperty = true;
+    	if (props.containsKey(key))
+    		booleanProperty = Boolean.valueOf(props.getProperty(key));
+    	return booleanProperty;
     }
 }
