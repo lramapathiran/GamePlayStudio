@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.lavanya.factoryDesign.Game;
 import com.lavanya.factoryDesign.GameFactory;
 import com.lavanya.factoryDesign.GameLaunch;
@@ -14,6 +17,7 @@ import com.lavanya.interfaces.DefChallDuelInterface;
 
 public class Utile implements DefChallDuelInterface {
 
+		final static Logger logger = LogManager.getLogger(Utile.class.getName());
 
 		public int intProperties(String key) throws IOException {
 			int confValue = Configuration.getInstance().getIntProperty(key);
@@ -47,17 +51,32 @@ public class Utile implements DefChallDuelInterface {
 			List<Integer> playerAnswer = new ArrayList<>();
 			Scanner sc = new Scanner(System.in);
 			System.out.println(
-					"Veuillez saisir un nombre à 4 chiffres compris entre 0000 à 9999!");
-			String input = sc.nextLine();
+					"Veuillez saisir un nombre à 4 chiffres compris entre 0000 et 9999!");
 			
-			// For each character in the String 
-	        // add it to the List 
-	        for (char ch : input.toCharArray()) { 
-	        	
-	        	int i = Character.getNumericValue(ch);
-	        	playerAnswer.add(i); 
-	        } 
-	  
+			do {
+				String input = sc.nextLine();
+				
+
+	//			each character of the string is split and converted into a string array
+				String inputAsArray[] = input.split("\\B");
+				
+				if (inputAsArray.length != 4) {
+					logger.error("combinaison entrée par le joueur en mode Defenseur < ou > 4 ou combinaison non numérique invalide < 4!");
+					System.out.println("Votre combinaison doit faire 4 chiffres, veuillez entrer un chiffre compris entre 0000 et 9999!");
+				}
+				else {
+		//			each String value of the array is converted into an int and then added in the playerAnswer ArrayList
+					try {
+						for (String stringValue : inputAsArray) {							
+								int stringToInt = Integer.parseInt(stringValue);
+								playerAnswer.add(stringToInt);					
+						}
+					} catch (NumberFormatException e) {
+						logger.error("Saisie invalide: NumberFormatException!");
+						System.out.println("Votre saisie est invalide! Veuillez saisir de nouveau votre combinaison! Elle ne doit comporter qu'une série de 4 chiffres (entre 0000 et 9999):");
+					}
+				}
+			}while(playerAnswer.size() != 4 || false);
 
 			return playerAnswer;
 
@@ -110,18 +129,32 @@ public class Utile implements DefChallDuelInterface {
 			
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Souhaitez-vous rejouer? O/N(pour retouner au Menu Principal, choisissez N)");
-			String willReplay = sc.nextLine();
+			String willReplay;
 			
-			switch(willReplay) {
-				case "O":
-					Game gameMode = GameFactory.getGame(GameType);
-					gameMode.gamePlay();
-					break;
-				case "N":
-					GameLaunch.main(null);
-					break;
+			
+				do {
+					willReplay = sc.nextLine();
+					if (willReplay.equalsIgnoreCase("O") || willReplay.equalsIgnoreCase("N")) {
+							switch(willReplay.toLowerCase()) {
+								case "o":
+									Game gameMode = GameFactory.getGame(GameType);
+									gameMode.gamePlay();
+									break;
+								case "n":
+									GameLaunch.main(null);
+									break;
+							}
+					}else{
+						logger.error("Saisie invalide: O ou N non renseigné");
+						System.out.println("Votre saisie est invalide! Veuillez indiquer de nouveau O pour oui et N pour non:");
+							
+					}
+					
+				}while(!willReplay.equalsIgnoreCase("O")||!willReplay.equalsIgnoreCase("N"));
 		
-			}
+			
+			
+			
 		}
 		
 		

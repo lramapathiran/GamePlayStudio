@@ -11,7 +11,7 @@ public class Configuration {
          props = new Properties();
     	
     		
-    		InputStream first = new FileInputStream("src/defenseurConfig.properties");
+    		InputStream first = new FileInputStream("src/gameConfig.properties");
     		props.load(first);   
     	
     }

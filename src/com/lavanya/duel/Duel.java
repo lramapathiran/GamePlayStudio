@@ -38,7 +38,7 @@ public class Duel extends Game{
 		do {
 			z1 = iDefDuel.playerAnswer();
 	
-			if (iDefChallDuel.winAnswer(z1) == true) {
+			if (iDefChallDuel.winAnswer(z1)) {
 				System.out.println("J'ai gagné!! Le Duel est terminé!");
 				System.out.println("La réponse était: " + x2);
 				break;
@@ -53,7 +53,7 @@ public class Duel extends Game{
 			
 			z2 = iDefChallDuel.computerPropositionCheck(x2,y);
 			
-			if (iDefChallDuel.winAnswer(z2) == true) {
+			if (iDefChallDuel.winAnswer(z2)) {
 				System.out.println("Vous avez gagné!! Le duel est terminé");
 				break;
 			}

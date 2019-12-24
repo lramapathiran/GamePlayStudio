@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
+import org.apache.logging.log4j.util.Chars;
+
+import static org.junit.Assert.assertTrue;
+//import org.apache.commons.lang.StringUtils;
 
 import com.lavanya.interfaces.DefChallDuelInterface;
 import com.lavanya.interfaces.DefDuelInterface;
@@ -14,6 +19,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 	
 
 		static DefChallDuelInterface iDefChallDuel = new Utile();
+		static Logger logger = Logger.getLogger("GameLaunch");
 		
 		
 //		Méthode pour créer une nouvelle combinaison à 4 chiffres par l'ordinateur
@@ -32,16 +38,42 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 			
 			List<Character> playerClue= new ArrayList<>();
 			Scanner sc = new Scanner(System.in);
+			
 			System.out.println(
 					"Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée: ex +,=,=,-(merci d'utiliser le même format de réponse que dans l'exemple)");
-			String clue = sc.nextLine();
+			
 //			sc.close();	
 			
-			for(Character ch: clue.toCharArray()) {
-				
-				playerClue.add(ch);
-			}
 			
+			char[] charArray;
+			int i=0;
+			do {
+				String clue = sc.nextLine();
+				charArray = clue.toCharArray();
+				
+				if (charArray.length != 4) {
+					logger.error("erreur de saisie: les valeurs + = ou - entrées sont > ou < à 4!");
+					System.out.println("Votre saisie est supérieur ou inférieur à 4 valeurs! Veuillez rentrer 4 valeurs de nouveau (+ = ou -)!: ");
+				}
+				
+				else {
+					for(Character ch: charArray) {
+						
+						playerClue.add(ch);
+					
+//						if (!ch.equals('+') || !ch.equals('-') || !ch.equals('=')) {
+//							playerClue.clear();
+//							logger.error("Erreur: saisie invalide avec un ou plusieurs charactères différent de + = ou -");
+//							System.out.println("Votre saisie est invalide, elle ne doit contenir que des valeurs de type + = ou -! veuillez renseigner de nouveau votre indice! :");
+//						}
+//						else {
+//							i++;
+							playerClue.add(ch);
+//						}
+					}
+				}
+			}while(charArray.length != 4 || playerClue.size() != 4);
+				
 			return playerClue;
 
 		}
@@ -50,8 +82,10 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 //		@param Listes de type Character avec x étant la réponse du joueur et y celle attendue
 		public void validationPlayerClue(List<Character> x, List<Character> y) {
 			
+			
+			
 			boolean comparison = x.equals(y);
-			while(comparison == false) {
+			while(!comparison) {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("Votre réponse est incorrecte! Veuillez vérifier votre saisie et la corriger ci-dessous:");
 				String clue = sc.nextLine();

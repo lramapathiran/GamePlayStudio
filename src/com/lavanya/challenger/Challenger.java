@@ -37,7 +37,7 @@ public class Challenger extends Game{
 			System.out.println("Vous avez saisi: " + y);
 			List<Character> computerAnswer = iDefChallDuel.computerPropositionCheck(x,y);
 			
-			if (iDefChallDuel.winAnswer(computerAnswer) == true){
+			if (iDefChallDuel.winAnswer(computerAnswer)){
 				
 				System.out.println("Vous avez gagné");
 				break;
