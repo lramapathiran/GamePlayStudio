@@ -11,5 +11,5 @@ public interface DefChallDuelInterface {
 	List<Character> computerPropositionCheck(List<Integer> x, List<Integer> y) throws IOException;
 	boolean winAnswer(List<Character> y) throws IOException;
 	void replay(GameType GameType) throws IOException;
-	List<Integer> playerCombi();
+	List<Integer> playerCombi() throws IOException;
 }

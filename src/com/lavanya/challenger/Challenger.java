@@ -53,11 +53,11 @@ public class Challenger extends Game{
 				y = iDefChallDuel.playerCombi();
 			}
 		
-			if (i == 3) {
+			if (i == iDefChallDuel.intProperties("lastAttempt")) {
 				
 				List<Character> computerAnswerLast = iDefChallDuel.computerPropositionCheck(x,y);
 				
-				if (iDefChallDuel.winAnswer(computerAnswerLast) == true) {
+				if (iDefChallDuel.winAnswer(computerAnswerLast)) {
 					System.out.println("Félicitations!! Vous avez gagné!!");
 					break;
 				}

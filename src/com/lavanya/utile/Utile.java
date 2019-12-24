@@ -46,7 +46,7 @@ public class Utile implements DefChallDuelInterface {
 // 		Méthode pour convertir la combinaison secrète du joueur d'un type String-->Chatacter-->Integer
 //		@param la combinaison secrète de type String entrée dans la console
 //		return: Liste d'Interger qui correspond à la combi secrète du joueur à découvrir par l'ordi
-		public List<Integer> playerCombi() {
+		public List<Integer> playerCombi() throws IOException {
 
 			List<Integer> playerAnswer = new ArrayList<>();
 			Scanner sc = new Scanner(System.in);
@@ -60,7 +60,7 @@ public class Utile implements DefChallDuelInterface {
 	//			each character of the string is split and converted into a string array
 				String inputAsArray[] = input.split("\\B");
 				
-				if (inputAsArray.length != 4) {
+				if (inputAsArray.length != intProperties("digit")) {
 					logger.error("combinaison entrée par le joueur en mode Defenseur < ou > 4 ou combinaison non numérique invalide < 4!");
 					System.out.println("Votre combinaison doit faire 4 chiffres, veuillez entrer un chiffre compris entre 0000 et 9999!");
 				}
@@ -76,7 +76,7 @@ public class Utile implements DefChallDuelInterface {
 						System.out.println("Votre saisie est invalide! Veuillez saisir de nouveau votre combinaison! Elle ne doit comporter qu'une série de 4 chiffres (entre 0000 et 9999):");
 					}
 				}
-			}while(playerAnswer.size() != 4 || false);
+			}while(playerAnswer.size() != intProperties("digit") || false);
 
 			return playerAnswer;
 

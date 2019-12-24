@@ -9,6 +9,7 @@ import com.lavanya.utile.Utile;
 public class MenuPage {
 	
 	private static MenuPage _instance = null;
+	DefChallDuelInterface iDefChallDuel = new Utile();
 	
 	public synchronized static MenuPage getInstance() throws IOException {
         if (_instance == null)
@@ -28,20 +29,18 @@ public class MenuPage {
 		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
 	}
 	
-	public List<Integer> menuStartDefenseur() {
-		
-		DefChallDuelInterface iDefChallDuel = new Utile();
+	public List<Integer> menuStartDefenseur() throws IOException {
 		
 		System.out.println("Mode Défenseur");
 		System.out.println("Bienvenue dans le mode Défenseur!");		
 		
-		List<Integer> x = iDefChallDuel.playerCombi();
+		List<Integer> x1 = iDefChallDuel.playerCombi();
         
-        System.out.println("Votre combinaison secrète à découvrir est " + x);
+        System.out.println("Votre combinaison secrète à découvrir est " + x1);
 		System.out.println(
 				"Maintenant c'est à moi de la deviner!");
 		
-		return x;
+		return x1;
 	}
 	
 	public void menuStartChallenger() {
@@ -54,22 +53,17 @@ public class MenuPage {
 	}
 	
 	
-	public void menuStartDuel() {
+	public List<Integer> menuStartDuel() throws IOException {
 		System.out.println("Mode Duel");
 		System.out.println("Bienvenue dans le mode Duel!");
 		System.out.println("Je vais définir un nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
-		System.out.println("Veuillez saisir ci-dessous votre nombre secret à 4 chiffres également compris entre 0000 à 9999 !");
+		List<Integer> x2 = iDefChallDuel.playerCombi();
+        
+        System.out.println("Votre combinaison secrète à découvrir est " + x2);
 		System.out.println("Nous sommes en mode duel, le premier à découvrir la combinaison secrète de l'autre gagne!");
 		System.out.println("Vous êtes prêt? Allez je commence!");
-	}
-	
-public void menuStartDev() {
 		
-		System.out.println("Mode Dev:");
-		System.out.println("Bienvenue dans le mode Dev!");
-		System.out.println("Vous devez deviner une combinaison de 4 chiffres comprise entre 0000 et 9999!");
-		System.out.println("Vous avez le droit à 5 tentatives!");
-		System.out.println("Vous êtes prêt? Allez! A vous de jouer!");
+		return x2;
 	}
 
 	

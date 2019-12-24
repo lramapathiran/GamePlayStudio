@@ -35,11 +35,11 @@ public class Defenseur extends Game{
 			
 			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, x);
 			List<Character> y = iDefDuel.playerAnswer();
-			iDefDuel.validationPlayerClue(y,playerAnswerExpected);
+			List<Character> playerClue = iDefDuel.validationPlayerClue(y,playerAnswerExpected);
 			
 		
 			
-			if (iDefChallDuel.winAnswer(y) == true){
+			if (iDefChallDuel.winAnswer(playerClue)){
 				System.out.println("J'ai gagné!!!");
 				break;
 				
@@ -48,15 +48,15 @@ public class Defenseur extends Game{
 						
 			else {					
 				System.out.println("Je n'ai pas eu la bonne réponse, il me reste " + j + " tentative(s)");
-				x = iDefDuel.runConditions(y, x, range);
+				x = iDefDuel.runConditions(playerClue, x, range);
 				System.out.println("La combinaison secrète à découvrir est pour rappel: " + combiToFind);
 				System.out.println("Voila ma nouvelle proposition " + x);
 				
-				if (i == 3) {
+				if (i == iDefChallDuel.intProperties("lastAttempt")) {
 					List<Character> yLast = iDefDuel.playerAnswer();
 				
 				
-					if (iDefChallDuel.winAnswer(yLast) == false) {
+					if (!iDefChallDuel.winAnswer(yLast)) {
 						System.out.println("Vous avez gagné!!!");
 					}
 					else {

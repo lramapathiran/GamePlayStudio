@@ -25,20 +25,24 @@ public class Duel extends Game{
 	@Override
 	public void gamePlay() throws IOException {
 		
-		MenuPage.getInstance().menuStartDuel();
+		List<Integer> combiToFind = MenuPage.getInstance().menuStartDuel();
 		
 		List<Integer> x1= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+				
 		List<Integer> x2= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+	
 		System.out.println("Voici ma première proposition: " + x1);
 		List<Proposition> range = iDefDuel.rangeArray();
-		List<Character> z1;
+		List<Character> playerClue;
 		List<Character> z2 = null;
 		int i = 0;
 			
 		do {
-			z1 = iDefDuel.playerAnswer();
+			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, x1);
+			List<Character> z1 = iDefDuel.playerAnswer();
+			playerClue = iDefDuel.validationPlayerClue(z1,playerAnswerExpected);
 	
-			if (iDefChallDuel.winAnswer(z1)) {
+			if (iDefChallDuel.winAnswer(playerClue)) {
 				System.out.println("J'ai gagné!! Le Duel est terminé!");
 				System.out.println("La réponse était: " + x2);
 				break;
@@ -46,10 +50,14 @@ public class Duel extends Game{
 				
 			else {
 				System.out.println("Mince! Je dois retenter ma chance, A vous de jouer maintenant!");
-				if (i > 0) {System.out.println("Pour rappel, l'indice obtenu au tour précédent était: " + z2);}
+				if (i > iDefChallDuel.intProperties("firstAttempt")) {System.out.println("Pour rappel, l'indice obtenu au tour précédent était: " + z2);}
 			}
-				
+			
+			if(iChallDuel.booleanProperties("isDevActive")) {	
+				System.out.println("La combinaison secrète de l'ordinateur est: " + x2);
+			}
 			List<Integer> y = iDefChallDuel.playerCombi();
+			
 			
 			z2 = iDefChallDuel.computerPropositionCheck(x2,y);
 			
@@ -63,11 +71,12 @@ public class Duel extends Game{
 				System.out.println("A mon tour!");
 			}
 				
-			x1 = iDefDuel.runConditions(z1,x1,range);
+			x1 = iDefDuel.runConditions(playerClue,x1,range);
+			System.out.println("La combinaison secrète à découvrir est pour rappel: " + combiToFind);
 			System.out.println("Voici ma nouvelle réponse: " + x1);
 			i++;
 				
-		}while(iDefChallDuel.winAnswer(z1) == false || iDefChallDuel.winAnswer(z2) == false);
+		}while(!iDefChallDuel.winAnswer(playerClue) || !iDefChallDuel.winAnswer(z2));
 		
 		iDefChallDuel.replay(GameType.duel);
 		
