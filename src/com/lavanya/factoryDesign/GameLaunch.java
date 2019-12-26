@@ -23,6 +23,7 @@ public class GameLaunch {
 		Scanner sc= new Scanner(System.in);
 		Game defenseur = GameFactory.getGame(GameType.defenseur);
 		Game challenger = GameFactory.getGame(GameType.challenger);
+		Game duel = GameFactory.getGame(GameType.duel);
 		 
 		MenuPage.getInstance().menuStart();
 		
@@ -33,8 +34,8 @@ public class GameLaunch {
 			try {
 				answer = Integer.parseInt(input);
 				if (answer  < iDefChallDuel.intProperties("gameModeSelectionLowRange") || answer > iDefChallDuel.intProperties("gameModeSelectionHighRange")) {
-					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 4!");
-					logger.error("Erreur de Saisie: mode non sélectionné avec un chiffre entre 1 et 4!");
+					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
+					logger.error("Erreur de Saisie: mode non sélectionné avec un chiffre entre 1 et 3!");
 				}
 				switch (answer) {
 				case 1:
@@ -43,10 +44,13 @@ public class GameLaunch {
 				case 2:				
 					challenger.gamePlay();
 					break;
+				case 3:				
+					duel.gamePlay();
+					break;
 				}
 		
 			} catch (NumberFormatException e) {
-				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 4!");
+				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
 				logger.error("Saisie invalide: NumberFormatException!");
 			}
 			
