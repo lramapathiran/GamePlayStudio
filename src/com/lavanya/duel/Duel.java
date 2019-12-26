@@ -25,58 +25,58 @@ public class Duel extends Game{
 	@Override
 	public void gamePlay() throws IOException {
 		
-		List<Integer> combiToFind = MenuPage.getInstance().menuStartDuel();
+		List<Integer> playerCombiToFind = MenuPage.getInstance().menuStartDuel();
 		
-		List<Integer> x1= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+		List<Integer> computerProposition= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
 				
-		List<Integer> x2= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+		List<Integer> computerCombiToFind= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
 	
-		System.out.println("Voici ma première proposition: " + x1);
+		System.out.println("Voici ma première proposition: " + computerProposition);
 		List<Proposition> range = iDefDuel.rangeArray();
-		List<Character> playerClue;
-		List<Character> z2 = null;
+		List<Character> validPlayerClue;
+		List<Character> computerClue = null;
 		int i = 0;
 			
 		do {
-			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, x1);
-			List<Character> z1 = iDefDuel.playerAnswer();
-			playerClue = iDefDuel.validationPlayerClue(z1,playerAnswerExpected);
+			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(playerCombiToFind, computerProposition);
+			List<Character> playerClue = iDefDuel.playerAnswer();
+			validPlayerClue = iDefDuel.validationPlayerClue(playerClue,playerAnswerExpected);
 	
-			if (iDefChallDuel.winAnswer(playerClue)) {
+			if (iDefChallDuel.winAnswer(validPlayerClue)) {
 				System.out.println("J'ai gagné!! Le Duel est terminé!");
-				System.out.println("La réponse était: " + x2);
+				System.out.println("La réponse était: " + computerCombiToFind);
 				break;
 			}
 				
 			else {
 				System.out.println("Mince! Je dois retenter ma chance, A vous de jouer maintenant!");
-				if (i > iDefChallDuel.intProperties("firstAttempt")) {System.out.println("Pour rappel, l'indice obtenu au tour précédent était: " + z2);}
+				if (i > iDefChallDuel.intProperties("firstAttempt")) {System.out.println("Pour rappel, l'indice obtenu au tour précédent était: " + computerClue);}
 			}
 			
 			if(iChallDuel.booleanProperties("isDevActive")) {	
-				System.out.println("La combinaison secrète de l'ordinateur est: " + x2);
+				System.out.println("La combinaison secrète de l'ordinateur est: " + computerCombiToFind);
 			}
-			List<Integer> y = iDefChallDuel.playerCombi();
+			List<Integer> playerProposition = iDefChallDuel.playerCombi();
 			
 			
-			z2 = iDefChallDuel.computerPropositionCheck(x2,y);
+			computerClue = iDefChallDuel.computerPropositionCheck(computerCombiToFind,playerProposition);
 			
-			if (iDefChallDuel.winAnswer(z2)) {
+			if (iDefChallDuel.winAnswer(computerClue)) {
 				System.out.println("Vous avez gagné!! Le duel est terminé");
 				break;
 			}
 			else {
 				System.out.println("Désolé, retentez votre chance au tour prochain!");
-				System.out.println("Voici quelques indications qui pourraient vous aider: " + z2);
+				System.out.println("Voici quelques indications qui pourraient vous aider: " + computerClue);
 				System.out.println("A mon tour!");
 			}
 				
-			x1 = iDefDuel.runConditions(playerClue,x1,range);
-			System.out.println("La combinaison secrète à découvrir est pour rappel: " + combiToFind);
-			System.out.println("Voici ma nouvelle réponse: " + x1);
+			computerProposition = iDefDuel.runConditions(validPlayerClue,computerProposition,range);
+			System.out.println("La combinaison secrète à découvrir est pour rappel: " + playerCombiToFind);
+			System.out.println("Voici ma nouvelle réponse: " + computerProposition);
 			i++;
 				
-		}while(!iDefChallDuel.winAnswer(playerClue) || !iDefChallDuel.winAnswer(z2));
+		}while(!iDefChallDuel.winAnswer(validPlayerClue) || !iDefChallDuel.winAnswer(computerClue));
 		
 		iDefChallDuel.replay(GameType.duel);
 		

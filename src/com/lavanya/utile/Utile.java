@@ -87,20 +87,20 @@ public class Utile implements DefChallDuelInterface {
 //		return la liste Character de comparaison =,+,-
 //		Méthode pour comparer la réponse du joueur à celle que l'ordinateur à générer et indication (+,=,-)
 //		pour que le joueur puisse proposer une nouvelle réponse
-		public List<Character> computerPropositionCheck(List<Integer> x, List<Integer> y) throws IOException {
+		public List<Character> computerPropositionCheck(List<Integer> combiToFind, List<Integer> proposition) throws IOException {
 			
 			List<Character> computerCheck = new ArrayList<>();
 			for (int i = 0; i < intProperties("digit"); i++) {
 
-				if (x.get(i) > y.get(i)) {
+				if (combiToFind.get(i) > proposition.get(i)) {
 					computerCheck.add('+');
 				}
 
-				if (x.get(i) < y.get(i)) {
+				if (combiToFind.get(i) < proposition.get(i)) {
 					computerCheck.add('-');
 				}
 
-				if (x.get(i) == y.get(i)) {
+				if (combiToFind.get(i) == proposition.get(i)) {
 					computerCheck.add('=');
 				}
 
@@ -111,7 +111,7 @@ public class Utile implements DefChallDuelInterface {
 		}
 		
 //		Méthode de type booléen pour définir si l'ordinateur a donné une combinaison 4 chiffres gagnante 
-		public boolean winAnswer(List<Character> playerAnswer) throws IOException {
+		public boolean winAnswer(List<Character> playerOrComputerClue) throws IOException {
 
 			// Création d'une liste qui correspond à la réponse du joueur que l'ordi attend
 			// pour gagner
@@ -121,7 +121,7 @@ public class Utile implements DefChallDuelInterface {
 				winCombi.add('=');
 			}
 
-			boolean win = playerAnswer.equals(winCombi);
+			boolean win = playerOrComputerClue.equals(winCombi);
 			return win;
 		}
 		

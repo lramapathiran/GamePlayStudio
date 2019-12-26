@@ -23,21 +23,21 @@ public class Challenger extends Game{
 		
 		MenuPage.getInstance().menuStartChallenger();
 		
-		List<Integer> x = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+		List<Integer> combiToFind = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
 		
 		if(iChallDuel.booleanProperties("isDevActive")) {	
-			System.out.println("La combinaison secrète de l'ordinateur est: " + x);
+			System.out.println("La combinaison secrète de l'ordinateur est: " + combiToFind);
 		}
-		List<Integer> y = iDefChallDuel.playerCombi();
+		List<Integer> playerProposition = iDefChallDuel.playerCombi();
 			
 		
 		for (int i=0, j=iDefChallDuel.intProperties("digitAttempt"); i<iDefChallDuel.intProperties("digitAttempt"); i++, j--) {
 			
 			
-			System.out.println("Vous avez saisi: " + y);
-			List<Character> computerAnswer = iDefChallDuel.computerPropositionCheck(x,y);
+			System.out.println("Vous avez saisi: " + playerProposition);
+			List<Character> computerClue = iDefChallDuel.computerPropositionCheck(combiToFind,playerProposition);
 			
-			if (iDefChallDuel.winAnswer(computerAnswer)){
+			if (iDefChallDuel.winAnswer(computerClue)){
 				
 				System.out.println("Vous avez gagné");
 				break;
@@ -45,26 +45,26 @@ public class Challenger extends Game{
 			
 			else {
 				System.out.println("Votre réponse est incorrect!");
-				System.out.println("Voici quelques indications pour vous aider à trouver la réponse exacte: " + computerAnswer);
+				System.out.println("Voici quelques indications pour vous aider à trouver la réponse exacte: " + computerClue);
 				System.out.println("Il vous reste " + j + " tentative(s)");
 				if(iChallDuel.booleanProperties("isDevActive")) {	
-					System.out.println("La combinaison secrète de l'ordinateur est: " + x);
+					System.out.println("La combinaison secrète de l'ordinateur est: " + combiToFind);
 				}
-				y = iDefChallDuel.playerCombi();
+				playerProposition = iDefChallDuel.playerCombi();
 			}
 		
 			if (i == iDefChallDuel.intProperties("lastAttempt")) {
 				
-				List<Character> computerAnswerLast = iDefChallDuel.computerPropositionCheck(x,y);
+				List<Character> computerClueLast = iDefChallDuel.computerPropositionCheck(combiToFind,playerProposition);
 				
-				if (iDefChallDuel.winAnswer(computerAnswerLast)) {
+				if (iDefChallDuel.winAnswer(computerClueLast)) {
 					System.out.println("Félicitations!! Vous avez gagné!!");
 					break;
 				}
 				
 				else {
 					System.out.println("J'ai gagné!");
-					System.out.println("La réponse était " + x);
+					System.out.println("La réponse était " + combiToFind);
 					break;
 				}
 								

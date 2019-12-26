@@ -9,7 +9,7 @@ public interface DefDuelInterface {
 	
 	Integer newRandom(int min, int max);
 	List<Character> playerAnswer() throws IOException;
-	List<Character> validationPlayerClue(List<Character> x, List<Character> y);
+	List<Character> validationPlayerClue(List<Character> playerClue, List<Character> playerAnswerExpected);
 	List<Proposition> rangeArray() throws IOException;
-	List<Integer> runConditions(List<Character> y, List<Integer> x, List<Proposition> range);
+	List<Integer> runConditions(List<Character> validPlayerClue, List<Integer> computerProposition, List<Proposition> range);
 }

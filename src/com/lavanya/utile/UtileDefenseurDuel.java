@@ -5,14 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.function.IntPredicate;
-
 import org.apache.log4j.Logger;
-import org.apache.logging.log4j.util.Chars;
-
-import static org.junit.Assert.assertTrue;
-//import org.apache.commons.lang.StringUtils;
-
 import com.lavanya.interfaces.DefChallDuelInterface;
 import com.lavanya.interfaces.DefDuelInterface;
 import com.lavanya.utile.Utile;
@@ -87,11 +80,11 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 		
 //		Méthode pour comparer la réponse du joueur (suite à la proposition de l'ordi) à la réponse attendue +,=,-
 //		@param Listes de type Character avec x étant la réponse du joueur et y celle attendue
-		public List<Character> validationPlayerClue(List<Character> x, List<Character> y) {
+		public List<Character> validationPlayerClue(List<Character> playerClue, List<Character> playerAnswerExpected) {
 			
 			
 			
-			boolean comparison = x.equals(y);
+			boolean comparison = playerClue.equals(playerAnswerExpected);
 			while(!comparison) {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("Votre réponse est incorrecte! Veuillez vérifier votre saisie et la corriger ci-dessous:");
@@ -100,14 +93,14 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 				int i=0;
 				for(Character ch: clue.toCharArray()) {
 					
-					x.set(i,ch);
+					playerClue.set(i,ch);
 					i++;
 				}
 				
-				comparison = x.equals(y);
+				comparison = playerClue.equals(playerAnswerExpected);
 			}
 			
-			return x;
+			return playerClue;
 		}
 		
 		public List<Proposition> rangeArray() throws IOException {
@@ -123,23 +116,23 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 		
 //		L'ordinateur va générer une nouvelle combinaison en fonction des indices +,= ou - 
 //		indiqué par le joueur
-		public List<Integer> runConditions(List<Character> y, List<Integer> x, List<Proposition> range) {
+		public List<Integer> runConditions(List<Character> validPlayerClue, List<Integer> computerProposition, List<Proposition> range) {
 			
 					
 			List<Integer> randomCombiNewTry = new ArrayList<>();
 			
-			for (int j = 0; j < y.size(); j++) {
+			for (int j = 0; j < validPlayerClue.size(); j++) {
 				 int z=0;
-				if (y.get(j).equals('+')) {
-					range.get(j).setMin(x.get(j) + 1);
+				if (validPlayerClue.get(j).equals('+')) {
+					range.get(j).setMin(computerProposition.get(j) + 1);
 					int min = range.get(j).getMin();
 					int max = range.get(j).getMax();
 					
 					z = newRandom(min, max);
 				}
 
-				if (y.get(j).equals('-')) {
-					range.get(j).setMax(x.get(j));
+				if (validPlayerClue.get(j).equals('-')) {
+					range.get(j).setMax(computerProposition.get(j));
 					int min = range.get(j).getMin();
 					int max = range.get(j).getMax();
 					
@@ -148,8 +141,8 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 				
 				
 
-				if (y.get(j).equals('=')) {
-					z = x.get(j);
+				if (validPlayerClue.get(j).equals('=')) {
+					z = computerProposition.get(j);
 				}
 				
 				randomCombiNewTry.add(z);

@@ -24,22 +24,22 @@ public class Defenseur extends Game{
 		
 		
 		List<Integer> combiToFind = MenuPage.getInstance().menuStartDefenseur();
-		List<Integer> x = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"), iDefChallDuel.intProperties("max"));
+		List<Integer> computerProposition = iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"), iDefChallDuel.intProperties("max"));
 		
 		
-		System.out.println("Voici ma première proposition: " + x);
+		System.out.println("Voici ma première proposition: " + computerProposition);
 		List<Proposition> range = iDefDuel.rangeArray();
 		
 		
 		for (int i=0, j=iDefChallDuel.intProperties("digitAttempt"); i<iDefChallDuel.intProperties("digitAttempt"); i++, j--) {
 			
-			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, x);
-			List<Character> y = iDefDuel.playerAnswer();
-			List<Character> playerClue = iDefDuel.validationPlayerClue(y,playerAnswerExpected);
+			List<Character> playerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, computerProposition);
+			List<Character> playerClue = iDefDuel.playerAnswer();
+			List<Character> validPlayerClue = iDefDuel.validationPlayerClue(playerClue,playerAnswerExpected);
 			
 		
 			
-			if (iDefChallDuel.winAnswer(playerClue)){
+			if (iDefChallDuel.winAnswer(validPlayerClue)){
 				System.out.println("J'ai gagné!!!");
 				break;
 				
@@ -48,15 +48,17 @@ public class Defenseur extends Game{
 						
 			else {					
 				System.out.println("Je n'ai pas eu la bonne réponse, il me reste " + j + " tentative(s)");
-				x = iDefDuel.runConditions(playerClue, x, range);
+				computerProposition = iDefDuel.runConditions(validPlayerClue, computerProposition, range);
 				System.out.println("La combinaison secrète à découvrir est pour rappel: " + combiToFind);
-				System.out.println("Voila ma nouvelle proposition " + x);
+				System.out.println("Voila ma nouvelle proposition " + computerProposition);
 				
 				if (i == iDefChallDuel.intProperties("lastAttempt")) {
-					List<Character> yLast = iDefDuel.playerAnswer();
+					List<Character> lastPlayerAnswerExpected = iDefChallDuel.computerPropositionCheck(combiToFind, computerProposition);
+					List<Character> lastPlayerClue = iDefDuel.playerAnswer();
+					List<Character> lastValidPlayerClue = iDefDuel.validationPlayerClue(lastPlayerClue,lastPlayerAnswerExpected);
 				
 				
-					if (!iDefChallDuel.winAnswer(yLast)) {
+					if (!iDefChallDuel.winAnswer(lastValidPlayerClue)) {
 						System.out.println("Vous avez gagné!!!");
 					}
 					else {
