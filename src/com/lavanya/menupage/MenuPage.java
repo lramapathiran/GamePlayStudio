@@ -6,18 +6,39 @@ import java.util.List;
 import com.lavanya.interfaces.DefChallDuelInterface;
 import com.lavanya.utile.Utile;
 
+
+
+/**
+ * Singleton class MenuPage qui lance tous les menus associés à chaque classe GameLaunch, Defenseur, Challenger ou Duel
+ * @author lavanya
+ *
+ */
 public class MenuPage {
 	
+//	Variable statique  _instance de type singleton
 	private static MenuPage _instance = null;
 	DefChallDuelInterface iDefChallDuel = new Utile();
 	
+	/**
+     * Méthode statique qui crée une instance de la classe MenuPage seulement si _instance n'a jamais été instancié auparavant
+     * @return l'unique instance de MenuPage
+     * @throws IOException, lève une exception si MenuPage a mal été instancié
+     */
 	public synchronized static MenuPage getInstance() throws IOException {
-        if (_instance == null)
+        
+		
+//		Bloc if qui vérifie si _instance de MenuPage a déja été instancié
+//    	si non, il est instancié il passe de null à une instanciation en un objet de MenuPage
+//    	si oui (_intance n'avait pas pour valeur nulle) il ne s'instancie pas de nouveau, il retourne la valeur que l'objet avait déjà
+		if (_instance == null)
             _instance = new MenuPage();
         
         return _instance;
     }
 	
+	/**
+	 * Méthode qui envoie le contenu du menu principal quand on rentre dans le jeu GamePlayStudio
+	 */
 	public void menuStart() {
 		System.out.println("Bienvenue à GAMEPLAY STUDIO");
 		System.out.println("Menu");
@@ -28,6 +49,11 @@ public class MenuPage {
 		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
 	}
 	
+	/**
+	 * Méthode qui envoie le contenu du menu du jeu Défenseur
+	 * @return retourne la combinaison secrète de plusieurs chiffres du joueur sous forme de liste d'Integer
+	 * @throws IOException, lève une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
+	 */
 	public List<Integer> menuStartDefenseur() throws IOException {
 		
 		System.out.println("Mode Défenseur");
@@ -38,6 +64,7 @@ public class MenuPage {
 		System.out.println("Pour cela vous renseignerez une combinaison de 4 caractères dont les valeurs seront + = ou -!");
 		System.out.println("C'est parti!!");
 		
+//		Le joueur propose saisie sa combinaison secrète
 		List<Integer> combiToFind = iDefChallDuel.playerCombi();
         
         System.out.println("Votre combinaison secrète à découvrir est " + combiToFind);
@@ -47,6 +74,9 @@ public class MenuPage {
 		return combiToFind;
 	}
 	
+	/**
+	 * Méthode qui envoie le contenu du menu du Challenger
+	 */
 	public void menuStartChallenger() {
 		
 		System.out.println("Mode Challenger:");
@@ -59,6 +89,11 @@ public class MenuPage {
 	}
 	
 	
+	/**
+	 * Méthode qui envoie le contenu du menu du jeu Duel
+	 * @return retourne la combinaison secrète de plusieurs chiffres du joueur sous forme de liste d'Integer
+	 * @throws IOException, lève une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
+	 */
 	public List<Integer> menuStartDuel() throws IOException {
 		System.out.println("Mode Duel");
 		System.out.println("Bienvenue dans le mode Duel!");
