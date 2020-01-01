@@ -9,7 +9,7 @@ import com.lavanya.utile.Utile;
 
 
 /**
- * Singleton class MenuPage qui lance tous les menus associés à chaque classe GameLaunch, Defenseur, Challenger ou Duel
+ * Singleton class MenuPage qui lance tous les menus associés à chaque classe (GameLaunch, Defenseur, Challenger ou Duel)
  * @author lavanya
  *
  */
