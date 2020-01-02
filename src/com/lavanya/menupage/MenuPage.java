@@ -97,7 +97,13 @@ public class MenuPage {
 	public List<Integer> menuStartDuel() throws IOException {
 		System.out.println("Mode Duel");
 		System.out.println("Bienvenue dans le mode Duel!");
-		System.out.println("Je vais définir un nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
+		System.out.println("Le but ici est d'être le premier à découvrir la combinaison de chiffres secrète de son adversaire.");
+		System.out.println("Pour se faire nous allons chacun définir une combinaison secrète puis tour à tour nous ferons une proposition jsuqu'à l'un d'entre nous gagne!");
+		System.out.println("Si la proposition est incorrecte, vous comme moi devrons donner des indications qui nous aiderons au tour prochain!");
+		System.out.println("je/vous indiquerez pour chaque chiffre de la combinaison propososée si le chiffre est plus grand(+), moins grand(-) ou exact(=) par rapport à la combinaison à découvrir!");
+		System.out.println("Je vais maintenant définir un nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
+		System.out.println("C'est fait pour ma part!");
+		System.out.println("A votre tour!");
 		List<Integer> playerCombiToFind = iDefChallDuel.playerCombi();
         
         System.out.println("Votre combinaison secrète à découvrir est " + playerCombiToFind);
