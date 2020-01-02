@@ -95,6 +95,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 							playerClue.clear();
 							logger.error("Erreur: saisie invalide avec un ou plusieurs charactères différent de + = ou -");
 							System.out.println("Votre saisie est invalide, elle ne doit contenir que des valeurs de type + = ou -! veuillez renseigner de nouveau votre indice! :");
+							break;
 						}
 					}
 				}

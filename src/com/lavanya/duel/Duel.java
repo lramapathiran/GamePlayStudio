@@ -46,8 +46,13 @@ public class Duel extends Game{
 		List<Integer> computerProposition= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
 				
 		List<Integer> computerCombiToFind= iDefChallDuel.getRandom(iDefChallDuel.intProperties("min"),iDefChallDuel.intProperties("max"));
+		
+//		Lance le mode développeur si dans le fichier properties, la valeur du boolean isDevActive est configurée à true
+		if(iChallDuel.booleanProperties("isDevActive")) {	
+			System.out.println("La combinaison secrète de l'ordinateur est: " + computerCombiToFind);
+		}
 	
-		System.out.println("Voici ma première proposition: " + computerProposition);
+		System.out.println("Maintenant que j'ai créé ma combinaison secrète, Voici ma première proposition pour deviner la vôtre: " + computerProposition);
 		List<Proposition> range = iDefDuel.rangeArray();
 		List<Character> validPlayerClue;
 		List<Character> computerClue = null;
@@ -93,7 +98,7 @@ public class Duel extends Game{
 				System.out.println("A mon tour!");
 				
 				computerProposition = iDefDuel.runConditions(validPlayerClue,computerProposition,range);
-				System.out.println("La combinaison secrète à découvrir est pour rappel: " + playerCombiToFind);
+				System.out.println("Votre combinaison secrète à découvrir est pour rappel: " + playerCombiToFind);
 				System.out.println("Voici ma nouvelle réponse: " + computerProposition);				
 				
 			}

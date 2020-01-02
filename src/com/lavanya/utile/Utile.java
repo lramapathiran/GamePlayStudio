@@ -81,7 +81,7 @@ public class Utile implements DefChallDuelInterface {
 			List<Integer> playerAnswer = new ArrayList<>();
 			Scanner sc = new Scanner(System.in);
 			System.out.println(
-					"Veuillez saisir un nombre à 4 chiffres compris entre 0000 et 9999!");
+					"Saisissez un nombre à 4 chiffres compris entre 0000 et 9999!");
 			
 //			boucle do/while qui demandera au joueur sa combinaison de 4 chiffres tant que celle-ci sera non valide
 			do {
@@ -93,7 +93,7 @@ public class Utile implements DefChallDuelInterface {
 				
 				if (inputAsArray.length != intProperties("digit")) {
 					logger.error("combinaison entrée par le joueur < ou > à 4 valeurs(que ce soit des chiffres ou des caractères non numérique invalides)!");
-					System.out.println("Votre combinaison doit faire 4 chiffres, veuillez entrer un chiffre compris entre 0000 et 9999!");
+					System.out.println("Votre combinaison doit faire 4 chiffres, veuillez entrer un nombre compris entre 0000 et 9999!");
 				}
 				else {
 		//			Chaque valeur de String dans l'array est converti en int puis ajouté la liste d'Integer playerAnswer
@@ -104,6 +104,7 @@ public class Utile implements DefChallDuelInterface {
 								playerAnswer.add(stringToInt);					
 						}
 					} catch (NumberFormatException e) {
+						playerAnswer.clear();
 						logger.error("Saisie invalide: NumberFormatException!");
 						System.out.println("Votre saisie est invalide! Veuillez saisir de nouveau votre combinaison! Elle ne doit comporter qu'une série de 4 chiffres (entre 0000 et 9999):");
 					}

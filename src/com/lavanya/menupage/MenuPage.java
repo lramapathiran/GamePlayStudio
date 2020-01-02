@@ -97,20 +97,20 @@ public class MenuPage {
 	public List<Integer> menuStartDuel() throws IOException {
 		System.out.println("Mode Duel");
 		System.out.println("Bienvenue dans le mode Duel!");
-		System.out.println("Le but ici est d'être le premier à découvrir la combinaison de chiffres secrète de son adversaire.");
-		System.out.println("Pour se faire nous allons chacun définir une combinaison secrète puis tour à tour nous ferons une proposition jsuqu'à l'un d'entre nous gagne!");
-		System.out.println("Si la proposition est incorrecte, vous comme moi devrons donner des indications qui nous aiderons au tour prochain!");
-		System.out.println("je/vous indiquerez pour chaque chiffre de la combinaison propososée si le chiffre est plus grand(+), moins grand(-) ou exact(=) par rapport à la combinaison à découvrir!");
-		System.out.println("Je vais maintenant définir un nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
-		System.out.println("C'est fait pour ma part!");
-		System.out.println("A votre tour!");
+		System.out.println("Le premier à découvrir la combinaison secrète de l'autre gagne!");
+		System.out.println("Pour se faire nous allons chacun définir sa combinaison secrète puis tour à tour nous ferons une proposition jsuqu'à ce que l'un d'entre nous gagne!");
+		System.out.println("Si la proposition est incorrecte, vous comme moi devrons donner des indications à l'autre qui l'aideront au tour prochain!");
+		System.out.println("C'est à dire: pour chaque chiffre de la combinaison propososée il faudra renseigner si le chiffre est plus grand(+), moins grand(-) ou exact(=) par rapport à la combinaison à découvrir!");
+		
+
+		System.out.println("Veuillez définir votre combinaison secrète!");
 		List<Integer> playerCombiToFind = iDefChallDuel.playerCombi();
         
         System.out.println("Votre combinaison secrète à découvrir est " + playerCombiToFind);
-		System.out.println("Nous sommes en mode duel, le premier à découvrir la combinaison secrète de l'autre gagne!");
-		System.out.println("A tour de rôle nous ferons nos propositions et l'adversaire(vous ou moi) devra pour chaque combinaison proposée si le chiffre est plus grand(+), moins grand(-) ou exact(=) par rapport à la combinaison à découvrir!");
-		System.out.println("Pour cela nous renseignerons une combinaison de 4 caractères dont les valeurs seront + = ou -!");
-		System.out.println("Vous êtes prêt? Allez je commence!");
+		
+		
+		System.out.println("A mon tour maintenant! Vous êtes prêt?");
+		System.out.println("Je vais maintenant définir mon nombre secret à 4 chiffres compris entre 0000 à 9999 que vous devrez deviner! ex: 8651");
 		
 		return playerCombiToFind;
 	}
