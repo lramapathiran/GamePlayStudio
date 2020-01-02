@@ -46,7 +46,7 @@ public class MenuPage {
 		System.out.println("2: Challenger");
 		System.out.println("3: Duel");
 		
-		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
+		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 3: ");
 	}
 	
 	/**
