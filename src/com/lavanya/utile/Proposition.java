@@ -2,10 +2,11 @@ package com.lavanya.utile;
 
 
 
+
 /**
  * Classe Proposition pour créer un objet ayant les attributs min et max
  * nécessaire pour être utilisé dans la liste de Proposition dans la classe UtileDefenseurDuel
- * @see UtiliseDefenseurDuel
+ * @see UtileDefenseurDuel
  * @author lavanya
  *
  */

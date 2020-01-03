@@ -6,7 +6,6 @@ import java.io.*;
 
 /**
  * Singleton class Configuration qui permet d'accéder à toutes les données du fichier gameConfig.properties dans les classes où c'est nécessaire.
- * @see game.Config.properties
  * @author lavanya
  *
  */
@@ -19,7 +18,7 @@ public class Configuration {
 
     /**
      * Méthode qui va accéder au fichier gameConfi.properties et le charger pour pouvoir utiliser ses données.
-     * @throws IOException
+     * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
      */
     private Configuration() throws IOException {
          props = new Properties();
@@ -34,7 +33,7 @@ public class Configuration {
     /**
      * Méthode statique qui crée une instance de la classe Configuration seulement si _instance n'a jamais été instancié auparavant
      * @return l'unique instance de Configuration
-     * @throws IOException, lève une exception si Configuration a mal été instancié
+     * @throws IOException Si Configuration a mal été instancié
      */
     public synchronized static Configuration getInstance() throws IOException {
     	

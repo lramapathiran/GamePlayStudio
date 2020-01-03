@@ -34,7 +34,7 @@ public class Defenseur extends Game{
 	
 	/**
 	 * Méthode qui lance toutes les méthodes nécessaires au jeu Defenseur
-	 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.	 
+	 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 	 */
 	@Override
 	public void gamePlay() throws IOException {

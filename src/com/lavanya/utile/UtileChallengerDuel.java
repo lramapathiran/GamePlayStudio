@@ -21,8 +21,8 @@ public class UtileChallengerDuel implements ChallDuelInterface {
 	 * @see Configuration
 	 * @param key
 	 *		ceci correspond au nom affecté à la donnée qu'on souhaite récupérer dans le fichier properties.
-	 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
-	 * @return retourne le boolean de la donnée d'intérêt stockée dans le fichier properties via la méthode getIntProperty() du singleton Configuration. 
+	 * @return retourne le boolean de la donnée d'intérêt stockée dans le fichier properties via la méthode getIntProperty() du singleton Configuration.
+	 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.  
 	 */
 	public boolean booleanProperties(String key) throws IOException {
 		boolean confValue = Configuration.getInstance().getBooleanProperty(key);

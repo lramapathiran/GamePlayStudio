@@ -34,8 +34,8 @@ public class Utile implements DefChallDuelInterface {
 		 * @see Configuration
 		 * @param key
 		 *		ceci correspond au nom affecté à la donnée qu'on souhaite récupérer dans le fichier properties.
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
-		 * @return retourne l'int de la donnée d'intérêt stockée dans le fichier properties via la méthode getIntProperty() du singleton Configuration. 
+		 * @return retourne l'int de la donnée d'intérêt stockée dans le fichier properties via la méthode getIntProperty() du singleton Configuration.
+		 * * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement. 
 		 */
 		public int intProperties(String key) throws IOException {
 			int confValue = Configuration.getInstance().getIntProperty(key);
@@ -50,8 +50,8 @@ public class Utile implements DefChallDuelInterface {
 		 * 		Le nombre aléatoire créé est compris dans un intervalle dont la valeur minimum est défini par min(issu du fichier properties).
 		 * @param max
 		 * 		Idem que min mais ici max définit la valeur maximum de l'intervalle.
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
 		 * @return retourne la liste d'Integer qui est la combinaison de 4 chiffres générée aléatoirement.
+		 * * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public List<Integer> getRandom(int min, int max) throws IOException {
 
@@ -73,8 +73,8 @@ public class Utile implements DefChallDuelInterface {
 
 		/**
 		 * Méthode qui permet au joueur d'entrer une combinaison de 4 chiffres et de la convertir en Liste d'Integer
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
 		 * @return retourne une liste d'Integer qui contient la combinaison de 4 chiffres du joueur.
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public List<Integer> playerCombi() throws IOException {
 
@@ -122,8 +122,8 @@ public class Utile implements DefChallDuelInterface {
 		 * 			Une liste qui contient la combinaison de 4 chiffres qui doit être découverte(selon le mode de jeu, ce sera celle de l'ordi ou du joueur)
 		 * @param proposition
 		 * 			Une liste qui contient la combinaison de 4 chiffres proposée pour découvrir la combi scrète (combiToFind), la proposition est faite par le joueur ou l'ordi
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
 		 * @return retourne une combinaison de caractères qui sont + = ou - pour indiquer au joueur/ordi quoi faire au tour prochain.
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public List<Character> computerPropositionCheck(List<Integer> combiToFind, List<Integer> proposition) throws IOException {
 			
@@ -157,8 +157,8 @@ public class Utile implements DefChallDuelInterface {
 		 * @param playerOrComputerClue
 		 * 			ceci est la combinaison de valeurs + = ou - générée par l'ordi ou le joueur pour aider l'adversaire à ajuster sa proposition au tour prochain
 		 * 			elle sera comparée à la combinaison gagnante (====).
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
 		 * @return retourne le boolean true si playerOrComputerClue est ==== sinon false dans le cas contraire.
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public boolean winAnswer(List<Character> playerOrComputerClue) throws IOException {
 
@@ -179,7 +179,7 @@ public class Utile implements DefChallDuelInterface {
 		 * Méthode qui permet au joueur à la fin du jeu de rejouer ou de retourner au menu principal.
 		 * @param GameType
 		 * 		ceci correspond au mode de jeu qui en cours d'utilisation par le joueur(Duel, Defenseur ou Challenger) pour qu'il soit rejoué s'il le souhaite.		 * 
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.		 * 
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public void replay(GameType GameType) throws IOException {
 			

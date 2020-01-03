@@ -22,7 +22,7 @@ public class MenuPage {
 	/**
      * Méthode statique qui crée une instance de la classe MenuPage seulement si _instance n'a jamais été instancié auparavant
      * @return l'unique instance de MenuPage
-     * @throws IOException, lève une exception si MenuPage a mal été instancié
+     * @throws IOException Si MenuPage a mal été instancié
      */
 	public synchronized static MenuPage getInstance() throws IOException {
         
@@ -52,7 +52,7 @@ public class MenuPage {
 	/**
 	 * Méthode qui envoie le contenu du menu du jeu Défenseur
 	 * @return retourne la combinaison secrète de plusieurs chiffres du joueur sous forme de liste d'Integer
-	 * @throws IOException, lève une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
+	 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 	 */
 	public List<Integer> menuStartDefenseur() throws IOException {
 		
@@ -92,7 +92,7 @@ public class MenuPage {
 	/**
 	 * Méthode qui envoie le contenu du menu du jeu Duel
 	 * @return retourne la combinaison secrète de plusieurs chiffres du joueur sous forme de liste d'Integer
-	 * @throws IOException, lève une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
+	 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 	 */
 	public List<Integer> menuStartDuel() throws IOException {
 		System.out.println("Mode Duel");

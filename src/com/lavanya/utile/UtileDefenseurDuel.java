@@ -30,7 +30,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 		 * 			soit redéfini dans la méthode runConditions() en fonction du chiffre proposé dans la combinaison de l'ordi lors du tour précédent et de l'indication + = - donné par le joueur.
 		 * @param max
 		 * 			idemn que min, sa valeur est défini par le fichier properties ou runConditions().
-		 * @see runConditions(ci dessous)
+		 * @see #runConditions
 		 * @return retourne le chiffre aléatoire compris dans l'intervalle min et max
 		 */
 		public Integer newRandom(int min, int max) {
@@ -44,8 +44,8 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 		/**
 		 * Méthode où le joueur à partir de la combinaison proposée par l'ordi va pouvoir donner des indications + = ou -.
 		 * Sa réponse est convertie en Character puis ajoutée dans une liste pour que l'ordi puisse l'utiliser et corriger sa proposition au tour prochain.
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
-		 * @return retourne la liste de Character issue de la conversion de la réponse en String --> Character du joueur.
+		 * @return retourne la liste de Character issue de la conversion de la réponse du joueur en String à en Character.
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public List<Character> playerAnswer() throws IOException {
 			
@@ -147,8 +147,8 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 		 * Ceci permet à chaque élément de la combinaison à découvrir d'avoir son propre intervalle min/max pour que l'ordi puisse faire évoluer cet intervalle indépendemment des autres au cours de chaque tentative
 		 * @see Proposition
 		 * le nombre de valeur de cette liste est défini par le fichier properties ("digit")
-		 * @throws génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
 		 * @return retourne la liste de Proposition contenant tous les sets min/max associés à chaque valeur de la combi secrète
+		 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 		 */
 		public List<Proposition> rangeArray() throws IOException {
 			

@@ -14,7 +14,7 @@ import com.lavanya.utile.Utile;
 
 
 /**
- * Méthode qui va utiliser la classe FactoryGame pour accéder à la classe abstraite Game et ainsi exécuter les classes concrètes Defenseur Duel ou Challenger. 
+ * Méthode qui va utiliser la classe GameFactory pour accéder à la classe abstraite Game et ainsi exécuter les classes concrètes Defenseur Duel ou Challenger. 
  * @author lavanya
  *
  */
@@ -26,8 +26,8 @@ public class GameLaunch {
 	
 	/**
 	 * Méthode main qui va executer le jeu Gameplay Studio
-	 * @param args
-	 * @throws IOException, génère une exception si dans la singleton class Configuration, l'instanciation n'a pas pu se faire correctement.
+	 * @param args un array d'arguments de lignes de commande nécessaire à l'exécution de l'application
+	 * @throws IOException Si dans la singleton class Configuration l'instanciation n'a pas pu se faire correctement.
 	 */
 	public static void main(String[] args) throws IOException {
 			
@@ -54,8 +54,8 @@ public class GameLaunch {
 			try {
 				answer = Integer.parseInt(input);
 				if (answer  < iDefChallDuel.intProperties("gameModeSelectionLowRange") || answer > iDefChallDuel.intProperties("gameModeSelectionHighRange")) {
-					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
 					logger.error("Erreur de Saisie: mode non sélectionné avec un chiffre entre 1 et 3!");
+					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
 				}
 				
 //				switch pour appeler la méthode gamePlay() de Defenseur, Challenger ou Duel
@@ -72,8 +72,8 @@ public class GameLaunch {
 				}
 		
 			} catch (NumberFormatException e) {
-				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
 				logger.error("Saisie invalide: NumberFormatException!");
+				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
 			}
 			
 		}while(answer  < iDefChallDuel.intProperties("gameModeSelectionLowRange") || answer > iDefChallDuel.intProperties("gameModeSelectionHighRange")  || true);
