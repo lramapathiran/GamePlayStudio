@@ -45,8 +45,10 @@ public class MenuPage {
 		System.out.println("1: Défenseur");
 		System.out.println("2: Challenger");
 		System.out.println("3: Duel");
+		System.out.println("4: Quitter le jeu GAMEPLAY STUDIO");
 		
-		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 3: ");
+		
+		System.out.println("Quel mode de jeu vous intéresse? Veuillez préciser votre choix en saisissant un chiffre 1 à 4: ");
 	}
 	
 	/**

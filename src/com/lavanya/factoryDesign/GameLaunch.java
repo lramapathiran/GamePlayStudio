@@ -54,8 +54,8 @@ public class GameLaunch {
 			try {
 				answer = Integer.parseInt(input);
 				if (answer  < iDefChallDuel.intProperties("gameModeSelectionLowRange") || answer > iDefChallDuel.intProperties("gameModeSelectionHighRange")) {
-					logger.error("Erreur de Saisie: mode non sélectionné avec un chiffre entre 1 et 3!");
-					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
+					logger.error("Erreur de Saisie: mode non sélectionné avec un chiffre entre 1 et 4!");
+					System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 4!");
 				}
 				
 //				switch pour appeler la méthode gamePlay() de Defenseur, Challenger ou Duel
@@ -69,11 +69,15 @@ public class GameLaunch {
 				case 3:				
 					duel.gamePlay();
 					break;
+				case 4:
+					System.out.println("Le jeu est terminé! Merci d'avoir joué!!");
+					System.exit(0);
+					break;
 				}
 		
 			} catch (NumberFormatException e) {
 				logger.error("Saisie invalide: NumberFormatException!");
-				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 3!");
+				System.out.println("Votre saisie est invalide! Veuillez préciser votre choix avec un chiffre compris entre 1 et 4!");
 			}
 			
 		}while(answer  < iDefChallDuel.intProperties("gameModeSelectionLowRange") || answer > iDefChallDuel.intProperties("gameModeSelectionHighRange")  || true);

@@ -53,7 +53,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 			Scanner sc = new Scanner(System.in);
 			
 			System.out.println(
-					"Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée: ex +,=,=,-(merci d'utiliser le même format de réponse que dans l'exemple)");
+					"Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée, ex +-+- (merci d'utiliser le même format de réponse que dans l'exemple)");
 			
 //			sc.close();	
 			
