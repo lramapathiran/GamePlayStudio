@@ -53,7 +53,8 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 			Scanner sc = new Scanner(System.in);
 			
 			System.out.println(
-					"Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée, ex +-+- (merci d'utiliser le même format de réponse que dans l'exemple)");
+					"Veuillez indiquer + = ou - pour chaque chaque valeur de la combinaison proposée, ex: +-+-");
+			System.out.println("Merci d'utiliser le format que dans l'exemple ci-dessus sans virgule!");
 			
 //			sc.close();	
 			
@@ -79,7 +80,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 //				condition pour gérer les erreurs de saisies avec affichage de messages/logs d'erreurs si le joueur entre une combinaison inféreur ou supérieur à 4 éléments.
 				if (charArray.length != iDefChallDuel.intProperties("digit")) {
 					logger.error("erreur de saisie: les valeurs + = ou - entrées sont > ou < à 4!");
-					System.out.println("Votre saisie est supérieur ou inférieur à 4 valeurs! Veuillez rentrer 4 valeurs de nouveau (+ = ou -)!: ");
+					System.out.println("Votre saisie est supérieur ou inférieur à 4 valeurs! Veuillez rentrer 4 valeurs de nouveau (+ = ou -) SANS VIRGULE!: ");
 				}
 				
 //				condition pour gérer les erreurs de saisies avec affichage de messages/logs d'erreurs si le joueur entre une combinaison autre que + = -. 
@@ -94,7 +95,7 @@ public class UtileDefenseurDuel implements DefDuelInterface{
 						else {
 							playerClue.clear();
 							logger.error("Erreur: saisie invalide avec un ou plusieurs charactères différent de + = ou -");
-							System.out.println("Votre saisie est invalide, elle ne doit contenir que des valeurs de type + = ou -! veuillez renseigner de nouveau votre indice! :");
+							System.out.println("Votre saisie est invalide, elle ne doit contenir que des valeurs de type + = ou - SANS VIRGULE! veuillez renseigner de nouveau votre indice! :");
 							break;
 						}
 					}
